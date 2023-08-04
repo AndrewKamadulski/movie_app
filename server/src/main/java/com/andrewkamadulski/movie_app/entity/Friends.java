@@ -4,21 +4,21 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 @Entity
-@Table(name="users")
+@Table(name="friends")
 @Data
-public class User {
+public class Friends {
+
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name="id")
     private Long id;
 
-    @Column(name="name")
-    private String userName;
 
-    @Column(name="email")
-    private String email;
+    @Column(name="user_id")
+    private Long userId;
+
+
+    @Column(name="friend")
+    private Long friendId;
 
 }
-
-
-

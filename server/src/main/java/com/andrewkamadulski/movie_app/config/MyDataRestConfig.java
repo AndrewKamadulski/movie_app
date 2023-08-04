@@ -1,6 +1,6 @@
 package com.andrewkamadulski.movie_app.config;
 
-import com.andrewkamadulski.movie_app.entity.User;
+import com.andrewkamadulski.movie_app.entity.Users;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurer;
@@ -17,7 +17,7 @@ public class MyDataRestConfig implements RepositoryRestConfigurer {
                                                      CorsRegistry cors) {
 
 
-        config.exposeIdsFor(User.class);
+        config.exposeIdsFor(Users.class);
 
 
         /* Configure CORS Mapping */
