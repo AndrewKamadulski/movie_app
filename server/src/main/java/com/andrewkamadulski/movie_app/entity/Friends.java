@@ -22,3 +22,4 @@ public class Friends {
     private Long friendId;
 
 }
+
