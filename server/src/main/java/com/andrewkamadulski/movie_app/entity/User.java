@@ -30,7 +30,8 @@ public class User {
     private List<Rating> ratings;
 
     @OneToMany(mappedBy = "userId", cascade = CascadeType.ALL)
-    private List<Replie> replies;
+    private List<Reply> replies;
+
 }
 
 

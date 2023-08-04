@@ -33,7 +33,7 @@ public class Review {
     private Movie movieId;
 
     @OneToMany(mappedBy = "reviewId", cascade = CascadeType.ALL)
-    private List<Replie> replies;
+    private List<Reply> replies;
 
 
 
