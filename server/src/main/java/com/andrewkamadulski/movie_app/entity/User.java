@@ -32,6 +32,8 @@ public class User {
     @OneToMany(mappedBy = "userId", cascade = CascadeType.ALL)
     private List<Reply> replies;
 
+
+
 }
 
 
