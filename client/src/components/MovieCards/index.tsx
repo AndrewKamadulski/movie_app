@@ -40,11 +40,11 @@ export const MovieCards = () => {
                     <div
                       onClick={singleMovie}
                       
-                      className="col-3 p-2"
+                      className="col-3"
                     >
                       <img
                         id={movie.id}
-                        style={{ height: 400 }}
+                        className="card-image"
                         src = {`https://image.tmdb.org/t/p/original${movie.poster_path}`}
                       />
                     </div>

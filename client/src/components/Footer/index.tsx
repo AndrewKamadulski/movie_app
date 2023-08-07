@@ -5,7 +5,7 @@ export const Footer = () => {
     <div className="footer-container">
       <footer>
         <div className="container text-white pt-5">
-                 <p>&copy;2022 AJK</p>          
+                 <p>&copy;2023 AJK</p>          
         </div>
       </footer>
     </div>
