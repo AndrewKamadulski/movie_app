@@ -6,12 +6,19 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
+@RepositoryRestResource(excerptProjection = CompleteReview.class)
 public interface ReviewsRepository extends JpaRepository<Review, Long> {
     @Query(
-            value = "SELECT * FROM reviews WHERE movie_id = :movieId",
+            value = """
+                    SELECT * FROM reviews  WHERE movie_id = :movieId
+                    """,
             nativeQuery = true)
     Page<Review> findByMovieId(@Param("movieId") Long movieId, Pageable pageable);
+
+
+
 
 
     @Query(
