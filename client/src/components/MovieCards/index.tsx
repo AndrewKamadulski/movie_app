@@ -26,7 +26,7 @@ export const MovieCards = () => {
 
 
   return (
-    <div className="container-fluid">
+    <div className="container-fluid card-container">
       <div className="row">
         <div className="col-lg-12">
           <div className="mt-3">
@@ -44,7 +44,7 @@ export const MovieCards = () => {
                     >
                       <img
                         id={movie.id}
-                        style={{ height: 500 }}
+                        style={{ height: 400 }}
                         src = {`https://image.tmdb.org/t/p/original${movie.poster_path}`}
                       />
                     </div>

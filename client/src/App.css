@@ -1,0 +1,11 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: rag;
+  font-weight: 400;
+  line-height: 1.5;
+  font-size: 20px;
+  color: white;
+    background-color: red;
+
+}
