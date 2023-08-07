@@ -1,5 +1,6 @@
 
-import { MovieCards } from "./components/MovieCards/MovieCards"
+
+import { Navbar } from "./components/Navbar/Navbar"
 import { Homepage } from "./pages/Homepage"
 
 
@@ -9,8 +10,9 @@ function App() {
 
   return (
     <>
-      <div>        
-        <MovieCards />
+      <div>     
+        <Navbar />   
+        <Homepage />
       </div>
     
     </>
