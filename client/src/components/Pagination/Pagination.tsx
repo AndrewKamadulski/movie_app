@@ -31,11 +31,11 @@ return(
    
         <li>
                 <button className='page-link'> 
-                Page {pageNumber}                
-                </button>
-                <input type="text" 
+                                Page   <input type="text" 
                 value={pageNumber} maxLength={3} onChange={(event)=>handlePageChange(event)}
-                 style={{width:80}}></input>
+                 style={{width:40, height:30}}></input>              
+                </button>
+                
         </li>
         <li className='page-item'>
         <button className='page-link bi-arrow-right-square'
