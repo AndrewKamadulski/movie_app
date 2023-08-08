@@ -9,10 +9,6 @@ export const MovieCards: React.FC<{movieObj: unknown, setMovieObj: React.Dispatc
   const [movieArr, setMovieArr] = useState([]);
   const [pageNumber, setPageNumber] = useState(1);
 
-  console.log("render");
- 
-  
-  
   const setSingleMovie = function (e) {    
     const obj = movieArr.find((o) => o.id === parseInt(e.target.id));
     setMovieObj(obj);

@@ -1,13 +1,17 @@
-import { SyntheticEventData } from "react-dom/test-utils";
+
 
 export const Pagination:React.FC<{pageNumber: number, setPageNumber: React.Dispatch<React.SetStateAction<number>>}> = (props) => {
     const {pageNumber, setPageNumber} = props;
 
-    const handleKeyPress = (event) => {
-        if(event.key === 'Enter' && event.target.value >=1 && event.target.value <=500){
-          setPageNumber(event.target.value);
+   
+const handlePageChange = (event) => {
+    
+        if(event.target.value >= 1 && event.target.value <= 500) {
+            setPageNumber(parseInt(event.target.value));
+           
         }
-      }
+}
+
 
 return(
 <nav aria-label="...">
@@ -27,10 +31,11 @@ return(
    
         <li>
                 <button className='page-link'> 
-                Page                 
-                <input onKeyPress={()=>handleKeyPress(event)} style={{width:40}}></input>
-               
+                Page {pageNumber}                
                 </button>
+                <input type="text" 
+                value={pageNumber} maxLength={3} onChange={(event)=>handlePageChange(event)}
+                 style={{width:80}}></input>
         </li>
         <li className='page-item'>
         <button className='page-link bi-arrow-right-square'
