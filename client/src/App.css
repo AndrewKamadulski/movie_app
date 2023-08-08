@@ -53,3 +53,7 @@ body {
   width: 65dvw;
   object-fit: cover;
 }
+
+.page-link {
+  color: black;
+}

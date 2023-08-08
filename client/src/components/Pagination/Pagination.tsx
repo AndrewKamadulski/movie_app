@@ -18,7 +18,14 @@ return(
    
         <li>
                 <button className='page-link'>
-                    Page {pageNumber}
+                    
+               
+                <form>
+                <label>
+                    Page                    
+                    <input className="ms-1"style={{width: 35}}type="text" placeholder={pageNumber} name="page"/>
+                </label>               
+                </form>
                 </button>
         </li>
         <li className='page-item'>
