@@ -9,3 +9,47 @@ body {
     background-color: rgb(184, 7, 7);
 
 }
+
+.movie_title {
+  background-color: black; 
+  opacity: 80%;
+  font-weight: 600;
+  font-size: 3rem;
+  padding: 1rem;
+  color: white;
+  margin-bottom: 1rem;
+}
+
+.movie-info {
+  display: flex;
+  justify-content: space-between;  
+}
+
+.movie-overview {
+  width: 90%;
+  margin-left: 00.5rem;
+  padding-left: 2rem;
+  font-size: 1.2rem;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  color: white;
+  display: flex;
+  position: relative;
+  align-items: center;
+  /* border: #e80707 solid; */
+  background-color: black;
+}
+
+.movie-comment {
+  font-size: 2rem;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  color: white;
+  align-items: center;
+  border: #e80707 solid;
+  background-color: black;
+  margin-bottom: 1em;
+}
+
+.movie-backdrop {
+  width: 65dvw;
+  object-fit: cover;
+}

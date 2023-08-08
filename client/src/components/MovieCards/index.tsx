@@ -1,9 +1,11 @@
 import { setState, useState, useEffect} from "react";
 import "./card.css";
+import { Link } from "react-router-dom";
 
-export const MovieCards = () => {
+export const MovieCards: React.FC<{movieObj: unknown, setMovieObj: React.Dispatch<React.SetStateAction<unknown>>}> = (props) => {
+  const {movieObj, setMovieObj} = props;
   const [movieArr, setMovieArr] = useState([]);
-  const [movieObj, setMovieObj] = useState({});
+  
 
   const singleMovie = function (e) {    
     const obj = movieArr.find((o) => o.id === parseInt(e.target.id));
@@ -42,11 +44,13 @@ export const MovieCards = () => {
                       
                       className="col-3"
                     >
+                      <Link to="/Movie">
                       <img
                         id={movie.id}
                         className="card-image"
                         src = {`https://image.tmdb.org/t/p/original${movie.poster_path}`}
                       />
+                      </Link>
                     </div>
                   </div>
                 </div>
