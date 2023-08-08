@@ -1,13 +1,19 @@
 import { setState, useState, useEffect} from "react";
 import "./card.css";
 import { Link } from "react-router-dom";
+import { Pagination } from "../Pagination/Pagination";
+
 
 export const MovieCards: React.FC<{movieObj: unknown, setMovieObj: React.Dispatch<React.SetStateAction<unknown>>}> = (props) => {
   const {movieObj, setMovieObj} = props;
   const [movieArr, setMovieArr] = useState([]);
-  
+  const [pageNumber, setPageNumber] = useState(1);
 
-  const singleMovie = function (e) {    
+  console.log("render");
+ 
+  
+  
+  const setSingleMovie = function (e) {    
     const obj = movieArr.find((o) => o.id === parseInt(e.target.id));
     setMovieObj(obj);
     console.log(movieObj); 
@@ -17,17 +23,18 @@ export const MovieCards: React.FC<{movieObj: unknown, setMovieObj: React.Dispatc
 
   useEffect(() => {
     fetch(
-      `https://api.themoviedb.org/3/discover/movie?api_key=8e8d1fb7683b829d728e204db461103b&page=&language=en-US&sort_by=popularity.desc&with_genres=27`
+      `https://api.themoviedb.org/3/discover/movie?api_key=8e8d1fb7683b829d728e204db461103b&page=${pageNumber}&language=en-US&sort_by=popularity.desc&with_genres=27`
     ).then(function (response) {
       response.json().then(function (data) {
         setMovieArr(data.results);
        });
     });
-},[movieArr])
+},[pageNumber])
  
 
 
   return (
+    <>
     <div className="container-fluid card-container">
       <div className="row">
         <div className="col-lg-12">
@@ -40,7 +47,7 @@ export const MovieCards: React.FC<{movieObj: unknown, setMovieObj: React.Dispatc
                 >
                   <div className="movie-card card">
                     <div
-                      onClick={singleMovie}
+                      onClick={setSingleMovie}
                       
                       className="col-3"
                     >
@@ -58,7 +65,11 @@ export const MovieCards: React.FC<{movieObj: unknown, setMovieObj: React.Dispatc
             </div>
           </div>
         </div>
-      </div>
+      </div>  
+    </div> 
+    <div className="container d-flex justify-content-center ">    
+    <Pagination  pageNumber={pageNumber} setPageNumber={setPageNumber}/>  
     </div>
+    </>
   );
 };

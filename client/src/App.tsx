@@ -32,8 +32,7 @@ function App() {
          <Route
                 path="/Movie"
                 element={<SingleMovie
-                movieObj={movieObj}
-                setMovieObj={setMovieObj}
+                movieObj={movieObj}               
                 >
                 </SingleMovie>}
               />           
