@@ -27,7 +27,7 @@ export const MovieCards = () => {
 
         const responseJson = await response.json().then(function (data) {
             setMovieArr(data.results);
-            console.log(movieArr);;
+            console.log(movieArr);
 
       },[]);
     }
