@@ -1,5 +1,6 @@
 import { Redirect } from "react-router-dom";
 import { useOktaAuth } from "@okta/okta-react";
+import OktaSignInWidget from "./OktaSignInWidget";
 
 const LoginWidget = ({config}) => {
     const {oktaAuth, authState} = useOktaAuth();
@@ -20,7 +21,8 @@ const LoginWidget = ({config}) => {
     }
 
     return authState.isAuthenticated ? 
-    <Redirect to={{pathname: '/'}} /> : <div></div>
-}
+    <Redirect to={{pathname: '/'}} /> 
+    :
+    <OktaSignInWidget config={config} onSuccess={onSuccess} onError={onError}/>
 
 export default LoginWidget;
