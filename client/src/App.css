@@ -57,3 +57,8 @@ body {
 .page-link {
   color: black;
 }
+
+.card-header {
+  background-color: black;
+}
+
