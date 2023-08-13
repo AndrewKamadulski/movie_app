@@ -1,24 +1,42 @@
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom"
-import "./App.css"
+import { BrowserRouter as Router, Route, Routes, useNavigate, redirect } from "react-router-dom";
+import "./App.css";
+import { Footer } from "./components/Footer";
+import { MovieCards } from "./components/MovieCards";
+import { Navbar } from "./components/Navbar/Navbar";
+import { Homepage } from "./pages/Homepage";
+import { SingleMovie } from "./pages/SingleMovie";
+import { useState } from "react";
+import { oktaConfig } from "./lib/oktaconfig";
+import {OktaAuth, toRelativeUrl} from '@okta/okta-auth-js';
+import { Security, LoginCallback } from "@okta/okta-react";
+import LoginWidget from "./Auth/LoginWidget";
 
-import { Footer } from "./components/Footer"
-import { MovieCards } from "./components/MovieCards"
-import { Navbar } from "./components/Navbar/Navbar"
-import { Homepage } from "./pages/Homepage"
-import { SingleMovie } from "./pages/SingleMovie"
-import { useState } from "react"
 
 
 
-
+const oktaAuth = new OktaAuth(oktaConfig);
 function App() {
  
+
   const [movieObj, setMovieObj] = useState({});
+
+  const customAuthHandler = () =>{
+    redirect('/login');
+  }
+
+  
+  const restoreOriginalUri = async (_oktaAuth: any, originalUri: any ) => {
+    redirect(toRelativeUrl(originalUri || '/', window.location.origin));
+  };
 
   return (
     <>
+    
+   
     <Router>
       <Navbar /> 
+     
+      <Security oktaAuth={oktaAuth} restoreOriginalUri={restoreOriginalUri} onAuthRequired={customAuthHandler}>   
        <Routes>            
         <Route
                 path="/"
@@ -36,10 +54,23 @@ function App() {
                 >
                 </SingleMovie>}
               />           
-         </Routes>
+        
+        <Route
+              path="/login"
+              element = {<LoginWidget config={oktaConfig}></LoginWidget>}
+            />
+            <Route path='/login/callback' 
+                component={LoginCallback}/>   
+                 </Routes>     
+         </Security>
+       
       <Footer />
-    </Router>
+      </Router>
+     
+   
+     
     </>
+    
   )
 }
 
