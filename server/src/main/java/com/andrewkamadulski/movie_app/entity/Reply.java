@@ -16,12 +16,13 @@ public class Reply {
     @Column(name="reply_text", columnDefinition = "TEXT", nullable = false)
     private String replyText;
 
+    @Column(name="user_name")
+    private String userName;
+
     @ManyToOne(optional = false)
     @JoinColumn(name = "review_id", referencedColumnName = "id")
     private Review reviewId;
 
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
-    private User userId;
+
 }
 

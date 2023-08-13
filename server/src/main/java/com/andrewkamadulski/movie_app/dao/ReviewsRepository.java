@@ -12,12 +12,11 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 public interface ReviewsRepository extends JpaRepository<Review, Long> {
     @Query(
             value = """
-                    SELECT * FROM reviews  WHERE movie_id = :movieId
+                    SELECT  * FROM reviews                  
+                    WHERE movie_id = :movieId
                     """,
             nativeQuery = true)
     Page<Review> findByMovieId(@Param("movieId") Long movieId, Pageable pageable);
-
-
 
 
 

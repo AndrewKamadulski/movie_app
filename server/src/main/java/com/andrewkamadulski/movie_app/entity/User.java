@@ -29,8 +29,7 @@ public class User {
     @OneToMany(mappedBy = "userId", cascade = CascadeType.ALL)
     private List<Rating> ratings;
 
-    @OneToMany(mappedBy = "userId", cascade = CascadeType.ALL)
-    private List<Reply> replies;
+
 
 
 

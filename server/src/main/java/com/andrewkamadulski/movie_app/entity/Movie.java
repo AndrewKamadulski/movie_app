@@ -19,6 +19,7 @@ public class Movie {
     @OneToMany(mappedBy = "movieId", cascade = CascadeType.ALL)
     private List<Review> reviews;
 
+
     @OneToMany(mappedBy = "movieId", cascade = CascadeType.ALL)
     private List<Rating> ratings;
 }
