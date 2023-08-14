@@ -5,19 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d8d3066b-7957-410f-bce6-2738e74686e7" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/andrewkamadulski/movie_app/config/SecurityConfiguration.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/andrewkamadulski/movie_app/dao/CompleteReply.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/Navbar/Navbar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Navbar/Navbar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/server/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/andrewkamadulski/movie_app/config/MyDataRestConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/andrewkamadulski/movie_app/config/MyDataRestConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/andrewkamadulski/movie_app/dao/CompleteReview.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/andrewkamadulski/movie_app/dao/CompleteReview.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/andrewkamadulski/movie_app/dao/RepliesRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/andrewkamadulski/movie_app/dao/RepliesRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/andrewkamadulski/movie_app/dao/ReviewsRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/andrewkamadulski/movie_app/dao/ReviewsRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/andrewkamadulski/movie_app/entity/Movie.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/andrewkamadulski/movie_app/entity/Movie.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/andrewkamadulski/movie_app/entity/Reply.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/andrewkamadulski/movie_app/entity/Reply.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/andrewkamadulski/movie_app/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/andrewkamadulski/movie_app/entity/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/andrewkamadulski/movie_app/config/SecurityConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/andrewkamadulski/movie_app/config/SecurityConfiguration.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -65,6 +54,8 @@
     <configuration name="movie_app" type="Application" factoryName="Application">
       <envs>
         <env name="db_password" value="Joedirt2010@" />
+        <env name="okta_client_id" value="0oaasg45a5c690YSm5d7" />
+        <env name="okta_dev" value="https://dev-71079476.okta.com/oauth2/default" />
       </envs>
       <option name="MAIN_CLASS_NAME" value="com.andrewkamadulski.movie_app.MovieAppApplication" />
       <module name="movie_app" />
