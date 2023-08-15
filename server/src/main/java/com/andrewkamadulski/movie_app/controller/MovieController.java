@@ -18,7 +18,7 @@ public MovieController(MovieService movieService) {
     this.movieService = movieService;
 }
 
-    @GetMapping("/secure/add/movie")
+    @PostMapping("/secure/add/movie")
     public void addMovie(@RequestHeader(value="Authorization") String token,
                          @RequestBody MovieRequest movieRequest) throws Exception {
         movieService.addMovie(movieRequest);
