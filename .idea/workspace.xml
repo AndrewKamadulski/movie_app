@@ -6,8 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="d8d3066b-7957-410f-bce6-2738e74686e7" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/andrewkamadulski/movie_app/config/SecurityConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/andrewkamadulski/movie_app/config/SecurityConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,12 +42,17 @@
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "ToolWindowRun.ShowToolbar": "false",
-    "git-widget-placeholder": "okta",
+    "git-widget-placeholder": "controllers",
     "ignore.virus.scanning.warn.message": "true",
     "last_opened_file_path": "C:/Users/kamad/library-app",
     "settings.editor.selected.configurable": "editor.preferences.import"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.andrewkamadulski.movie_app.utils" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="movie_app" type="Application" factoryName="Application">
       <envs>

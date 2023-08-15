@@ -22,4 +22,9 @@ public class Movie {
 
     @OneToMany(mappedBy = "movieId", cascade = CascadeType.ALL)
     private List<Rating> ratings;
+
+    public Movie(Long movieId, String title) {
+        this.id = movieId;
+        this.title = title;
+    }
 }

@@ -1,9 +1,41 @@
+import { useOktaAuth } from "@okta/okta-react";
 import { useEffect, useState } from "react";
 
 export const MovieReviews = () => {
   const [reviewData, setReviewData] = useState([]);
+  const { authState } = useOktaAuth();
+
+
+// const addMovie = async () => {
+
+//   if (authState && authState.isAuthenticated) {
+//     const url = `http://localhost:8080/api/movies/secure/add/movie`;
+//     const requestOptions = {
+//       method: "GET",
+//       headers: {
+//         Authorization: `Bearer ${authState.accessToken?.accessToken}`,
+//         "Content-Type": "application/json",
+//       },
+//     };
+//     const addMovieResponse = await fetch(url, requestOptions);
+//     if (!addMovieResponse.ok) {
+//       throw new Error("Something went wrong");
+//     }
+
+//     const addMovieResponseJson =
+//       await addMovieResponse.json();
+//       console.log(addMovieResponseJson)
+
+//   }
+  
+// }
+
+// addMovie();
+
 
   useEffect(() => {
+
+
     fetch(
       `http://www.localhost:8080/api/reviews/search/findByMovieId?movieId=2`
     ).then(function (response) {
