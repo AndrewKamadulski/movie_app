@@ -1,7 +1,9 @@
 package com.andrewkamadulski.movie_app.config;
 
+import com.andrewkamadulski.movie_app.entity.Movie;
 import com.andrewkamadulski.movie_app.entity.Reply;
 import com.andrewkamadulski.movie_app.entity.Review;
+import com.andrewkamadulski.movie_app.entity.User;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurer;
@@ -24,6 +26,10 @@ public class MyDataRestConfig implements RepositoryRestConfigurer {
 
         config.exposeIdsFor(Reply.class);
         config.exposeIdsFor(Review.class);
+        config.exposeIdsFor(User.class);
+        config.exposeIdsFor(Movie.class);
+
+
 
         disableHttpMethods(Reply.class, config, theUnsupportedActions);
         disableHttpMethods(Review.class, config, theUnsupportedActions);

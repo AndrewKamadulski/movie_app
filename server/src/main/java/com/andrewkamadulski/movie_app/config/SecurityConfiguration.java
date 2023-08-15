@@ -61,8 +61,10 @@ public class SecurityConfiguration {
 
         // Protect endpoints at /api/<type>/secure
         http.authorizeRequests(configurer ->
-                        configurer
-                                .requestMatchers("/api/movies/secure/**")
+                        configurer.requestMatchers("/*"
+                               )
+                               .permitAll()
+                                .requestMatchers("/api/movies/secure/**","/api/reviews/secure/**")
                                 .authenticated())
                 .oauth2ResourceServer()
                 .jwt();
