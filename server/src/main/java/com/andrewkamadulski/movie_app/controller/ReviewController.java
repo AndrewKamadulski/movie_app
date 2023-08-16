@@ -20,13 +20,13 @@ public class ReviewController {
     @PostMapping("/secure/add/review")
     public void addReview(@RequestHeader(value="Authorization") String token,
                          @RequestBody ReviewRequest reviewRequest) throws Exception {
-       reviewService.addReview(reviewRequest);
+       reviewService.saveReview(reviewRequest);
     };
 
     @PutMapping("/secure/update/review")
     public void updateReview(@RequestHeader(value="Authorization") String token,
                           @RequestBody ReviewRequest reviewRequest) throws Exception {
-        reviewService.updateReview(reviewRequest);
+        reviewService.saveReview(reviewRequest);
     };
 
     @DeleteMapping("secure/delete/review/{id}")

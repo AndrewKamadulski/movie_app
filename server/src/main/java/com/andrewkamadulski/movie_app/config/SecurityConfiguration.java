@@ -64,7 +64,7 @@ public class SecurityConfiguration {
                         configurer.requestMatchers("/*"
                                )
                                .permitAll()
-                                .requestMatchers("/api/movies/secure/**","/api/reviews/secure/**")
+                                .requestMatchers("/api/movies/secure/**","/api/reviews/secure/**","/api/reviews/secure/**")
                                 .authenticated())
                 .oauth2ResourceServer()
                 .jwt();

@@ -18,7 +18,7 @@ public class ReviewService {
     private ReviewsRepository reviewsRepository;
 
 
-    public void addReview(ReviewRequest reviewRequest)  {
+    public void saveReview(ReviewRequest reviewRequest)  {
 
         Review review = new Review();
 
@@ -30,16 +30,7 @@ public class ReviewService {
         reviewsRepository.save(review);
     }
 
-    public void updateReview(ReviewRequest reviewRequest)  {
 
-        Review review = new Review();
-
-        review.setUserId(reviewRequest.getUser());
-        review.setMovieId(reviewRequest.getMovie());
-        review.setReviewText(reviewRequest.getReviewText());
-
-        reviewsRepository.save(review);
-    }
 
     public void deleteReview(Long reviewId)  {
 
