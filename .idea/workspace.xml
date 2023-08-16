@@ -5,13 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d8d3066b-7957-410f-bce6-2738e74686e7" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/andrewkamadulski/movie_app/controller/ReplyController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/andrewkamadulski/movie_app/requestmodels/ReplyRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/andrewkamadulski/movie_app/service/ReplyService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/andrewkamadulski/movie_app/controller/FriendController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/andrewkamadulski/movie_app/requestmodels/FriendRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/andrewkamadulski/movie_app/service/FriendService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/andrewkamadulski/movie_app/config/SecurityConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/andrewkamadulski/movie_app/config/SecurityConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/andrewkamadulski/movie_app/controller/ReviewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/andrewkamadulski/movie_app/controller/ReviewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/andrewkamadulski/movie_app/service/ReviewService.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/andrewkamadulski/movie_app/service/ReviewService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/andrewkamadulski/movie_app/config/MyDataRestConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/andrewkamadulski/movie_app/config/MyDataRestConfig.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
