@@ -13,9 +13,6 @@ public class ReviewRequest {
 
     private Movie movie;
 
-
-
-
 };
 
 

@@ -1,10 +1,10 @@
 class MovieModel {
 
-movieId: number;
+id: number;
 title: string;
 
 constructor(movieId: number, title: string){
-    this.movieId = movieId;
+    this.id = movieId;
     this.title = title;
 }
 

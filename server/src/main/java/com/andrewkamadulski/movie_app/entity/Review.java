@@ -24,11 +24,11 @@ public class Review {
     @Column(name = "created_at")
     private Date createdAt;
 
-    @ManyToOne(optional = false)
+    @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User userId;
 
-    @ManyToOne(optional = false)
+    @ManyToOne
     @JoinColumn(name = "movie_id", referencedColumnName = "id")
     private Movie movieId;
 

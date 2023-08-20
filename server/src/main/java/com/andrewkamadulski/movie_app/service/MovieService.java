@@ -17,7 +17,7 @@ public class MovieService {
 
 
     public void addMovie(MovieRequest movieRequest) throws Exception {
-        Optional<Movie> movie = moviesRepository.findById(movieRequest.getMovieId());
+        Optional<Movie> movie = moviesRepository.findById(movieRequest.getId());
 
         if(movie.isPresent()){
             throw new Exception("Movie already in database.");
@@ -25,7 +25,7 @@ public class MovieService {
 
         Movie movieToAdd = new Movie();
 
-            movieToAdd.setId(movieRequest.getMovieId());
+            movieToAdd.setId();d(movieRequest.getId());
             movieToAdd.setTitle(movieRequest.getTitle());
 
     moviesRepository.save(movieToAdd);

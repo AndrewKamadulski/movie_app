@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class MovieRequest {
 
-    private Long movieId;
+    private Long id;
 
     private String title;
 

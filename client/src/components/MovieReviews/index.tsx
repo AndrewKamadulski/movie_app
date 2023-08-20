@@ -1,26 +1,55 @@
 import { useOktaAuth } from "@okta/okta-react";
 import { useEffect, useState } from "react";
 import MovieModel from "../../models/MovieModel";
+import UserModel from "../../models/UserModel";
+import ReviewModel from "../../models/ReviewModel";
 
 export const MovieReviews:React.FC<{movieObj: unknown, setMovieObj: React.Dispatch<React.SetStateAction<unknown>>}> = (props) => {
   const {movieObj, setMovieObj} = props;
   const [reviewData, setReviewData] = useState([]);
   const { authState } = useOktaAuth();
+  console.log(authState.idToken.claims.user_id);
 
 
+
+  
 
   const handleAddComment = async () => {
+
+
+    const userId = parseInt(authState.idToken.claims.user_id);
+    const userName = authState.idToken.claims.name;
+    const userEmail= authState.idToken.claims.email;
+
+    const user = new UserModel(userId, userName, userEmail);
+
+    const movie = new MovieModel(movieObj.id, movieObj.title);
+
+    const reviewText = "this is some test text";
+
+    const review = new ReviewModel(user, movie, reviewText);
+
+
+
     const validateMovie = await fetch(
       `http://www.localhost:8080/api/movies/${movieObj.id}`
     )
-
+    
     if(!validateMovie.ok) {     
-      const movieRequest = new MovieModel(movieObj.id, movieObj.title);
-      addMovie(movieRequest);
-      console.log(movieRequest);
+      
+      addMovie(movie).then(()=> addReview(review));
+      console.log(movie);
     }
 
-    
+
+    if(validateMovie.ok) {
+      addReview(review);
+    }
+
+
+  
+
+
 
   }
 
@@ -52,6 +81,30 @@ const addMovie = async (data) => {
 }
 
 
+const addReview = async (data) => {
+
+  if (authState && authState.isAuthenticated) {
+    const url = `http://localhost:8080/api/reviews/secure/add/review`;
+    const requestOptions = {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${authState.accessToken?.accessToken}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    };
+    const addMovieResponse = await fetch(url, requestOptions);
+    if (!addMovieResponse.ok) {
+      throw new Error("Something went wrong");
+    }
+
+    console.log("Review added to database.")
+
+  }
+  
+}
+
+
 
 
   useEffect(() => {
@@ -76,6 +129,7 @@ const addMovie = async (data) => {
   } else {
     return (
       <div className="p-5">
+        
         {reviewData.map((review) => (
           <>
             {" "}
