@@ -5,6 +5,11 @@ export const MovieCards = () => {
   const [movieArr, setMovieArr] = useState([]);
   const [movieObj, setMovieObj] = useState({});
 
+
+  
+
+
+
   const singleMovie = function (e) {
     const obj = movieArr.find((o) => o.id === parseInt(e.target.id));
     setMovieObj(obj);

@@ -1,5 +1,11 @@
+import { MovieReviews } from "../components/MovieReviews";
+
 export const SingleMovie: React.FC<{ movieObj: unknown }> = (props) => {
   const { movieObj } = props;
+
+  if(!movieObj.id) {
+    window.location.assign("/");
+  }
 
   return (
     <>
@@ -29,6 +35,7 @@ export const SingleMovie: React.FC<{ movieObj: unknown }> = (props) => {
             </div>
           </div>
         </div>
+        <MovieReviews movieObj={movieObj} />
       </div>
     </>
   );

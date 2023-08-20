@@ -11,8 +11,7 @@ export const MovieCards: React.FC<{movieObj: unknown, setMovieObj: React.Dispatc
 
   const setSingleMovie = function (e) {    
     const obj = movieArr.find((o) => o.id === parseInt(e.target.id));
-    setMovieObj(obj);
-    console.log(movieObj); 
+    setMovieObj(obj);   
   };
   
 

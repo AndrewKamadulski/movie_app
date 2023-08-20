@@ -1,43 +1,64 @@
 import { useOktaAuth } from "@okta/okta-react";
 import { useEffect, useState } from "react";
+import MovieModel from "../../models/MovieModel";
 
-export const MovieReviews = () => {
+export const MovieReviews:React.FC<{movieObj: unknown, setMovieObj: React.Dispatch<React.SetStateAction<unknown>>}> = (props) => {
+  const {movieObj, setMovieObj} = props;
   const [reviewData, setReviewData] = useState([]);
   const { authState } = useOktaAuth();
 
 
-// const addMovie = async () => {
 
-//   if (authState && authState.isAuthenticated) {
-//     const url = `http://localhost:8080/api/movies/secure/add/movie`;
-//     const requestOptions = {
-//       method: "GET",
-//       headers: {
-//         Authorization: `Bearer ${authState.accessToken?.accessToken}`,
-//         "Content-Type": "application/json",
-//       },
-//     };
-//     const addMovieResponse = await fetch(url, requestOptions);
-//     if (!addMovieResponse.ok) {
-//       throw new Error("Something went wrong");
-//     }
+  const handleAddComment = async () => {
+    const validateMovie = await fetch(
+      `http://www.localhost:8080/api/movies/${movieObj.id}`
+    )
 
-//     const addMovieResponseJson =
-//       await addMovieResponse.json();
-//       console.log(addMovieResponseJson)
+    if(!validateMovie.ok) {     
+      const movieRequest = new MovieModel(movieObj.id, movieObj.title);
+      addMovie(movieRequest);
+      console.log(movieRequest);
+    }
 
-//   }
+    
+
+  }
+
+
+
+
+
+const addMovie = async (data) => {
+
+  if (authState && authState.isAuthenticated) {
+    const url = `http://localhost:8080/api/movies/secure/add/movie`;
+    const requestOptions = {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${authState.accessToken?.accessToken}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    };
+    const addMovieResponse = await fetch(url, requestOptions);
+    if (!addMovieResponse.ok) {
+      throw new Error("Something went wrong");
+    }
+
+    console.log("Movie added to database.")
+
+  }
   
-// }
+}
 
-// addMovie();
+
 
 
   useEffect(() => {
 
 
     fetch(
-      `http://www.localhost:8080/api/reviews/search/findByMovieId?movieId=2`
+      `http://www.localhost:8080/api/reviews/search/findByMovieId?movieId=${movieObj.id}`
     ).then(function (response) {
       response.json().then(function (data) {
         setReviewData(data._embedded.reviews);
@@ -49,6 +70,7 @@ export const MovieReviews = () => {
     return (
       <div>
         <h3>No Comments Yet</h3>
+        <button onClick={()=>handleAddComment()}className="btn btn-primary text-light fs-1" style={{height: 50, width: 400}}>Hit me!</button>
       </div>
     );
   } else {
