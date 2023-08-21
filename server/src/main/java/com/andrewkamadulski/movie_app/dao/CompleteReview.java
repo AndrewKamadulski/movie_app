@@ -14,6 +14,8 @@ interface CompleteReview {
 
    List<Reply> getReplies();
 
+   long getId();
+
 
    String getReviewText();
 

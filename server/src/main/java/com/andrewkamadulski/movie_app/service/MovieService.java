@@ -25,7 +25,7 @@ public class MovieService {
 
         Movie movieToAdd = new Movie();
 
-            movieToAdd.setId();d(movieRequest.getId());
+            movieToAdd.setId(movieRequest.getId());
             movieToAdd.setTitle(movieRequest.getTitle());
 
     moviesRepository.save(movieToAdd);

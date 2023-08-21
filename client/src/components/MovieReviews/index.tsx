@@ -3,16 +3,12 @@ import { useEffect, useState } from "react";
 import MovieModel from "../../models/MovieModel";
 import UserModel from "../../models/UserModel";
 import ReviewModel from "../../models/ReviewModel";
+import ReplyModel from "../../models/ReplyModel";
 
-export const MovieReviews:React.FC<{movieObj: unknown, setMovieObj: React.Dispatch<React.SetStateAction<unknown>>}> = (props) => {
-  const {movieObj, setMovieObj} = props;
+export const MovieReviews:React.FC<{movieObj: unknown}> = (props) => {
+  const {movieObj} = props;
   const [reviewData, setReviewData] = useState([]);
   const { authState } = useOktaAuth();
-  console.log(authState.idToken.claims.user_id);
-
-
-
-  
 
   const handleAddComment = async () => {
 
@@ -46,11 +42,6 @@ export const MovieReviews:React.FC<{movieObj: unknown, setMovieObj: React.Dispat
       addReview(review);
     }
 
-
-  
-
-
-
   }
 
 
@@ -71,7 +62,7 @@ const addMovie = async (data) => {
     };
     const addMovieResponse = await fetch(url, requestOptions);
     if (!addMovieResponse.ok) {
-      throw new Error("Something went wrong");
+      throw new Error("Unable to add movie to the database.");
     }
 
     console.log("Movie added to database.")
@@ -93,15 +84,37 @@ const addReview = async (data) => {
       },
       body: JSON.stringify(data),
     };
-    const addMovieResponse = await fetch(url, requestOptions);
-    if (!addMovieResponse.ok) {
-      throw new Error("Something went wrong");
+    const addReviewResponse = await fetch(url, requestOptions);
+    if (!addReviewResponse.ok) {
+      throw new Error("Unable to add review to the database.");
     }
 
     console.log("Review added to database.")
 
   }
   
+}
+
+const handleAddReply = async () => {
+
+  const userId = parseInt(authState.idToken.claims.user_id);
+  const userName = authState.idToken.claims.name;
+  const userEmail= authState.idToken.claims.email;
+
+  const user = new UserModel(userId, userName, userEmail);
+
+  const movie = new MovieModel(movieObj.id, movieObj.title);
+
+  const reviewText = " ";
+
+  const review = new ReviewModel(user, movie, reviewText, 10);
+
+  const replyText = "This is some test reply text";
+
+  const reply = new ReplyModel(userName, review, replyText);
+
+  console.log(reply);
+
 }
 
 
@@ -122,23 +135,20 @@ const addReview = async (data) => {
   if (!reviewData.length) {
     return (
       <div>
-        <h3>No Comments Yet</h3>
-        <button onClick={()=>handleAddComment()}className="btn btn-primary text-light fs-1" style={{height: 50, width: 400}}>Hit me!</button>
+        <h3>No Comments Yet</h3>      
       </div>
     );
   } else {
     return (
-      <div className="p-5">
-        
-        {reviewData.map((review) => (
+      <div className="p-5">               
+        {reviewData.map((review: any) => (
           <>
-            {" "}
-            <div className="py-2" key={review.id}>
+            <div className="py-2" key={review.id} >
               <div className="card">
                 <div className="column">
                   <div className="card-header">
                     <div className=" row">
-                      <div className="col-12 col-md-5 ms-2">
+                      <div className="col-12 col-md-5 ms-2" onClick={(e)=>console.log(e.target)} datatype={review.id}>
                         {review.userId.userName}
                       </div>
                       <div className="col-12 col-md-6 text-end ms-auto">
@@ -148,32 +158,37 @@ const addReview = async (data) => {
                     </div>
                   </div>
                 </div>
-                <div className="p-2 text-dark">
+                <div className="p-2 text-dark" key={review.id}>
                   {review.reviewText}
                   <hr />
-                  {review.replies.map((reply) => {
+                  {review.replies.map((reply: any) => {
                     return (
                       <>
-                        <div className="column text-light">
+                      <div>
+                        <div className="column text-light"  >
                           <div className="card-header">
                             <div className=" row">
-                              <div className="col-12 col-md-5 ms-2 ">
+                              <div className="col-12 col-md-5 ms-2" >
                                 {reply.userName} replied
-                              </div>
-                              <div className="col-12 col-md-6 text-end ms-auto"></div>
+                              </div>                              
                             </div>
                           </div>
+                       
                         </div>
+                        
 
-                        <div className="text-light card-header">
+                        <div>
                           {reply.replyText}
                           <hr />
+                        </div>
                         </div>
                       </>
                     );
                   })}
                 </div>
+                <button className="btn btn-lg btn-primary" datatype={review.id} onClick={()=>{handleAddReply()}}>add reply</button>
               </div>
+              
             </div>
           </>
         ))}

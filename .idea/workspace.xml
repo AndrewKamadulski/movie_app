@@ -6,10 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="d8d3066b-7957-410f-bce6-2738e74686e7" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/andrewkamadulski/movie_app/entity/Review.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/andrewkamadulski/movie_app/entity/Review.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/andrewkamadulski/movie_app/requestmodels/MovieRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/andrewkamadulski/movie_app/requestmodels/MovieRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/andrewkamadulski/movie_app/requestmodels/ReviewRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/andrewkamadulski/movie_app/requestmodels/ReviewRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/andrewkamadulski/movie_app/requestmodels/UserRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/andrewkamadulski/movie_app/requestmodels/UserRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/MovieReviews/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/MovieReviews/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/andrewkamadulski/movie_app/dao/CompleteReview.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/andrewkamadulski/movie_app/dao/CompleteReview.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/com/andrewkamadulski/movie_app/service/MovieService.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/andrewkamadulski/movie_app/service/MovieService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -43,16 +41,16 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "ToolWindowRun.ShowToolbar": "false",
-    "git-widget-placeholder": "singlemoviepage",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/kamad/library-app",
-    "settings.editor.selected.configurable": "editor.preferences.import"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;ToolWindowRun.ShowToolbar&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;singlemoviepage&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/kamad/library-app&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.import&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.andrewkamadulski.movie_app.utils" />
@@ -99,7 +97,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/server/src/main/java/com/andrewkamadulski/movie_app/dao/CompleteReview.java</url>
-          <line>17</line>
+          <line>19</line>
           <properties class="com.andrewkamadulski.movie_app.dao.CompleteReview" method="getReviewText">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
