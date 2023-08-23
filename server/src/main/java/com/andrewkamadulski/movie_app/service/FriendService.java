@@ -18,16 +18,16 @@ public class FriendService {
 
 
 
-        Friend friend = new Friend();
+        Friend friend1 = new Friend();
+        Friend friend2 = new Friend();
 
-        friend.setUser(friendRequest.getUser());
-        friend.setFriendId(friendRequest.getFriendId());
+        friend1.setUser(friendRequest.getUser());
+        friend1.setFriendId(friendRequest.getFriendId());
 
-        friendsRepository.save(friend);
+        friend2.setUser(friendRequest.getFriendId());
+        friend2.setFriendId(friendRequest.getUser());
 
-        friend.setUser(friendRequest.getFriendId());
-        friend.setFriendId(friendRequest.getUser());
-
-        friendsRepository.save(friend);
+        friendsRepository.save(friend1);
+        friendsRepository.save(friend2);
     }
 }
