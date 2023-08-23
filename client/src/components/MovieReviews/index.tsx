@@ -95,6 +95,29 @@ const addReview = async (data) => {
   
 }
 
+const addReply = async (data) => {
+
+  if (authState && authState.isAuthenticated) {
+    const url = `http://localhost:8080/api/replies/secure/add/reply`;
+    const requestOptions = {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${authState.accessToken?.accessToken}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    };
+    const addReplyResponse = await fetch(url, requestOptions);
+    if (!addReplyResponse.ok) {
+      throw new Error("Unable to add reply to the database.");
+    }
+
+    console.log("reply added to database.")
+
+  }
+  
+}
+
 const handleAddReply = async () => {
 
   const userId = parseInt(authState.idToken.claims.user_id);
@@ -113,7 +136,7 @@ const handleAddReply = async () => {
 
   const reply = new ReplyModel(userName, review, replyText);
 
-  console.log(reply);
+  addReply(reply);
 
 }
 

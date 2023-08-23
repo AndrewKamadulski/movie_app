@@ -9,7 +9,7 @@ import org.springframework.data.rest.core.config.Projection;
 import java.util.Date;
 import java.util.List;
 
-@Projection(name = "completeReview", types = { Review.class })
+@Projection(name = "CompleteReview", types = { Review.class })
 interface CompleteReview {
 
    List<Reply> getReplies();

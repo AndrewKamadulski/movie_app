@@ -24,5 +24,10 @@ public class FriendService {
         friend.setFriendId(friendRequest.getFriendId());
 
         friendsRepository.save(friend);
+
+        friend.setUser(friendRequest.getFriendId());
+        friend.setFriendId(friendRequest.getUser());
+
+        friendsRepository.save(friend);
     }
 }

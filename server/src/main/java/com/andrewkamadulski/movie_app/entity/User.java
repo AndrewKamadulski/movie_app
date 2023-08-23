@@ -23,7 +23,7 @@ public class User {
     @OneToMany(mappedBy = "userId", cascade = CascadeType.ALL)
     private List<Review> reviews;
 
-    @OneToMany(mappedBy = "friendId", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Friend> friends;
 
     @OneToMany(mappedBy = "userId", cascade = CascadeType.ALL)
