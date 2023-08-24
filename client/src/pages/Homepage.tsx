@@ -1,4 +1,5 @@
 import { MovieCards } from "../components/MovieCards";
+import { ReviewForm } from "../components/ReviewForm/ReviewForm";
 
 
 export const Homepage: React.FC<{movieObj: unknown, setMovieObj: React.Dispatch<React.SetStateAction<unknown>>}> = (props) => {
@@ -9,10 +10,11 @@ export const Homepage: React.FC<{movieObj: unknown, setMovieObj: React.Dispatch<
     return(
         <div>            
             <div className="mx-5 my-2">
-            <MovieCards
+                <ReviewForm/>
+            {/* <MovieCards
             movieObj={movieObj}
             setMovieObj={setMovieObj}>
-            </MovieCards>
+            </MovieCards> */}
             </div>
         </div>
     );
