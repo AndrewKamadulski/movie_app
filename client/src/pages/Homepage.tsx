@@ -9,12 +9,11 @@ export const Homepage: React.FC<{movieObj: unknown, setMovieObj: React.Dispatch<
 
     return(
         <div>            
-            <div className="mx-5 my-2">
-                <ReviewForm/>
-            {/* <MovieCards
+            <div className="mx-5 my-2">               
+            <MovieCards
             movieObj={movieObj}
             setMovieObj={setMovieObj}>
-            </MovieCards> */}
+            </MovieCards>
             </div>
         </div>
     );

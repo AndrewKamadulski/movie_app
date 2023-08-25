@@ -51,7 +51,7 @@ function App() {
             />
 
             <Route
-              path="/Movie"
+              path="/Movie/:movieId"
               element={<SingleMovie movieObj={movieObj}></SingleMovie>}
             />
 

@@ -1,11 +1,19 @@
+import { useOktaAuth } from "@okta/okta-react";
 import { MovieReviews } from "../components/MovieReviews";
+import { ReviewForm } from "../components/ReviewForm/ReviewForm";
+import { useState } from "react";
 
 export const SingleMovie: React.FC<{ movieObj: unknown }> = (props) => {
   const { movieObj } = props;
+  console.log(movieObj);
 
-  if(!movieObj.id) {
-    window.location.assign("/");
-  }
+  const [isReviewed, setIsReviewed] = useState(false);
+
+  const { authState } = useOktaAuth();
+
+  // if(!movieObj.id) {
+  //   window.location.assign("/");
+  // }
 
   return (
     <>
@@ -35,7 +43,8 @@ export const SingleMovie: React.FC<{ movieObj: unknown }> = (props) => {
             </div>
           </div>
         </div>
-        <MovieReviews movieObj={movieObj} />
+        {authState?.isAuthenticated && !isReviewed && <ReviewForm movieObj={movieObj} isReviewed={isReviewed} setIsReviewed={setIsReviewed}/>}
+        <MovieReviews movieObj={movieObj} isReviewed={isReviewed} />
       </div>
     </>
   );

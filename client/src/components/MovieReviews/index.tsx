@@ -5,96 +5,11 @@ import UserModel from "../../models/UserModel";
 import ReviewModel from "../../models/ReviewModel";
 import ReplyModel from "../../models/ReplyModel";
 
-export const MovieReviews:React.FC<{movieObj: unknown}> = (props) => {
-  const {movieObj} = props;
+export const MovieReviews:React.FC<{movieObj: unknown, isReviewed: unknown}> = (props) => {
+  const {movieObj, isReviewed} = props;
   const [reviewData, setReviewData] = useState([]);
   const { authState } = useOktaAuth();
-
-  const handleAddComment = async () => {
-
-
-    const userId = parseInt(authState.idToken.claims.user_id);
-    const userName = authState.idToken.claims.name;
-    const userEmail= authState.idToken.claims.email;
-
-    const user = new UserModel(userId, userName, userEmail);
-
-    const movie = new MovieModel(movieObj.id, movieObj.title);
-
-    const reviewText = "this is some test text";
-
-    const review = new ReviewModel(user, movie, reviewText);
-
-
-
-    const validateMovie = await fetch(
-      `http://www.localhost:8080/api/movies/${movieObj.id}`
-    )
-    
-    if(!validateMovie.ok) {     
-      
-      addMovie(movie).then(()=> addReview(review));
-      console.log(movie);
-    }
-
-
-    if(validateMovie.ok) {
-      addReview(review);
-    }
-
-  }
-
-
-
-
-
-const addMovie = async (data) => {
-
-  if (authState && authState.isAuthenticated) {
-    const url = `http://localhost:8080/api/movies/secure/add/movie`;
-    const requestOptions = {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${authState.accessToken?.accessToken}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    };
-    const addMovieResponse = await fetch(url, requestOptions);
-    if (!addMovieResponse.ok) {
-      throw new Error("Unable to add movie to the database.");
-    }
-
-    console.log("Movie added to database.")
-
-  }
   
-}
-
-
-const addReview = async (data) => {
-
-  if (authState && authState.isAuthenticated) {
-    const url = `http://localhost:8080/api/reviews/secure/add/review`;
-    const requestOptions = {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${authState.accessToken?.accessToken}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    };
-    const addReviewResponse = await fetch(url, requestOptions);
-    if (!addReviewResponse.ok) {
-      throw new Error("Unable to add review to the database.");
-    }
-
-    console.log("Review added to database.")
-
-  }
-  
-}
-
 const addReply = async (data) => {
 
   if (authState && authState.isAuthenticated) {
@@ -136,7 +51,7 @@ const handleAddReply = async () => {
 
   const reply = new ReplyModel(userName, review, replyText);
 
-  addReply(reply);
+    addReply(reply);
 
 }
 
@@ -145,19 +60,23 @@ const handleAddReply = async () => {
 
   useEffect(() => {
 
-
+  
     fetch(
       `http://www.localhost:8080/api/reviews/search/findByMovieId?movieId=${movieObj.id}`
     ).then(function (response) {
       response.json().then(function (data) {
+       try {
         setReviewData(data._embedded.reviews);
+      } catch {
+        console.log("No reviews yet!");
+      }
       });
     });
-  }, []);
+  }, [isReviewed, movieObj.id]);
 
   if (!reviewData.length) {
     return (
-      <div>
+      <div className="ms-3" key={1}>
         <h3>No Comments Yet</h3>      
       </div>
     );
@@ -165,13 +84,13 @@ const handleAddReply = async () => {
     return (
       <div className="p-5">               
         {reviewData.map((review: any) => (
-          <>
-            <div className="py-2" key={review.id} >
+          
+            <div className="py-2" key={parseInt(review.id)} >
               <div className="card">
                 <div className="column">
                   <div className="card-header">
                     <div className=" row">
-                      <div className="col-12 col-md-5 ms-2" onClick={(e)=>console.log(e.target)} datatype={review.id}>
+                      <div className="col-12 col-md-5 ms-2" onClick={(e)=>console.log(review.id)} datatype={review.id}>
                         {review.userId.userName}
                       </div>
                       <div className="col-12 col-md-6 text-end ms-auto">
@@ -213,7 +132,7 @@ const handleAddReply = async () => {
               </div>
               
             </div>
-          </>
+          
         ))}
       </div>
     );

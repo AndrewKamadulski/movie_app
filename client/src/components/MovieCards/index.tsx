@@ -21,7 +21,7 @@ export const MovieCards: React.FC<{movieObj: unknown, setMovieObj: React.Dispatc
       `https://api.themoviedb.org/3/discover/movie?api_key=8e8d1fb7683b829d728e204db461103b&page=${pageNumber}&language=en-US&sort_by=popularity.desc&with_genres=27`
     ).then(function (response) {
       response.json().then(function (data) {
-        setMovieArr(data.results);
+        setMovieArr(data.results);        
        });
     });
 },[pageNumber])
@@ -46,7 +46,7 @@ export const MovieCards: React.FC<{movieObj: unknown, setMovieObj: React.Dispatc
                       
                       className="col-3"
                     >
-                      <Link to="/Movie">
+                      <Link to= {`/Movie/`+ movie.id}>
                       <img
                         id={movie.id}
                         className="card-image"
