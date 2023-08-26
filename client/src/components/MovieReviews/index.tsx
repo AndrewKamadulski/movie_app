@@ -84,7 +84,7 @@ const addReply = async (data) => {
 
   if (!reviewData.length) {
     return (
-      <div className="ms-3" key={Math.random()}>
+      <div className="ms-3" key={isReviewed}>
         <h3>No Comments Yet</h3>      
       </div>
     );
