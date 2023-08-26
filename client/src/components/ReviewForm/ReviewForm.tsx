@@ -5,7 +5,7 @@ import ReviewModel from "../../models/ReviewModel";
 import "./reviewform.css";
 import { useOktaAuth } from '@okta/okta-react';
 
-export const ReviewForm: React.FC<{ movieObj: unknown, isReviewed: unknown, setIsReviewed: unknown }> = (props) => {
+export const ReviewForm: React.FC<{ isReviewed: unknown, setIsReviewed: unknown }> = (props) => {
     const { movieObj, isReviewed, setIsReviewed } = props;
 
     const { authState } = useOktaAuth();
@@ -114,9 +114,9 @@ const addMovie = async (data) => {
         }
         
       }
-      
+    
 
-    return(
+    return(    
         <div className='my-3'>
                     <p className={`m-1 ${characterCount === 280 || error ? 'text-error' : ''}`}>
         Character Count: {characterCount}/280

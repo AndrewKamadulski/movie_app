@@ -1,19 +1,39 @@
 import { useOktaAuth } from "@okta/okta-react";
 import { MovieReviews } from "../components/MovieReviews";
 import { ReviewForm } from "../components/ReviewForm/ReviewForm";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
-export const SingleMovie: React.FC<{ movieObj: unknown }> = (props) => {
-  const { movieObj } = props;
-  console.log(movieObj);
+export const SingleMovie: React.FC<{movieArr: unknown }> = (props) => {  
+  const movie = useParams();
 
   const [isReviewed, setIsReviewed] = useState(false);
+  const [movieObj, setMovieObj] = useState({});
 
   const { authState } = useOktaAuth();
 
-  // if(!movieObj.id) {
-  //   window.location.assign("/");
-  // }
+  useEffect(()=>{  
+ 
+const url = `https://api.themoviedb.org/3/movie/${movie.id}language=en-US`;
+const options = {
+  method: 'GET',
+  headers: {
+    accept: 'application/json',
+    Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4ZThkMWZiNzY4M2I4MjlkNzI4ZTIwNGRiNDYxMTAzYiIsInN1YiI6IjYzM2NlMDk0MDA2YjAxMDA3ZjI3ZDY5YiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.GrI0N5JWVxdtzfmYZtq0occyJyllrY4zgg-2EENzrio'
+  }
+};
+
+fetch(url, options)
+.then(function (response) {
+  response.json().then(function (data) {
+
+    console.log(data);
+    setMovieObj(data);
+  });
+});
+}, []);
+
+console.log(movieObj);
 
   return (
     <>

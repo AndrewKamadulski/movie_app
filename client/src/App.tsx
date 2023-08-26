@@ -18,8 +18,8 @@ import { Security, LoginCallback } from "@okta/okta-react";
 import LoginWidget from "./Auth/LoginWidget";
 
 const oktaAuth = new OktaAuth(oktaConfig);
-function App() {
-  const [movieObj, setMovieObj] = useState({});
+function App() {  
+  const [movieArr, setMovieArr] = useState([]);
 
   const customAuthHandler = () => {
     redirect("/login");
@@ -43,16 +43,18 @@ function App() {
             <Route
               path="/"
               element={
-                <Homepage
-                  movieObj={movieObj}
-                  setMovieObj={setMovieObj}
+                <Homepage               
+                  movieArr={movieArr}
+                  setMovieArr={setMovieArr}
                 ></Homepage>
               }
             />
 
             <Route
-              path="/Movie/:movieId"
-              element={<SingleMovie movieObj={movieObj}></SingleMovie>}
+              path="/Movie/:id"
+              element={<SingleMovie                
+                 movieArr={movieArr}> 
+                 </SingleMovie>}
             />
 
             <Route

@@ -2,17 +2,17 @@ import { MovieCards } from "../components/MovieCards";
 import { ReviewForm } from "../components/ReviewForm/ReviewForm";
 
 
-export const Homepage: React.FC<{movieObj: unknown, setMovieObj: React.Dispatch<React.SetStateAction<unknown>>}> = (props) => {
-    const {movieObj, setMovieObj} = props;
+export const Homepage: React.FC<{ movieArr: unknown, setMovieArr: React.Dispatch<React.SetStateAction<unknown>>}> = (props) => {
+    const {movieArr, setMovieArr} = props;
 
     
 
     return(
         <div>            
             <div className="mx-5 my-2">               
-            <MovieCards
-            movieObj={movieObj}
-            setMovieObj={setMovieObj}>
+            <MovieCards           
+            movieArr={movieArr}
+            setMovieArr={setMovieArr}>
             </MovieCards>
             </div>
         </div>
