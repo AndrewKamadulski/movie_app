@@ -11,7 +11,7 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 @RepositoryRestResource(excerptProjection = CompleteReview.class)
 public interface ReviewsRepository extends JpaRepository<Review, Long> {
     @Query(
-            value = "SELECT  * FROM reviewsWHERE movie_id = :movieId", nativeQuery = true)
+            value = "SELECT  * FROM reviews WHERE movie_id = :movieId", nativeQuery = true)
             Page<Review> findByMovieId(@Param("movieId") Long movieId, Pageable pageable);
 
     @Query(
