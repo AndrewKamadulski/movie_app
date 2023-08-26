@@ -90,7 +90,7 @@ const addReply = async (data) => {
     );
   } else if(reviewData.length) {
     return (
-      <div className="p-5">                  
+      <div className="p-5" key={isReviewed}>                  
         {reviewData.map((review: any, index: number) => (
           
             <div className="py-2" key={review.id} >

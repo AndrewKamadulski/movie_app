@@ -31,7 +31,7 @@ fetch(url, options)
     setMovieObj(data);
   });
 });
-}, []);
+}, [isReviewed, movie.id]);
 
 console.log(movieObj);
 
