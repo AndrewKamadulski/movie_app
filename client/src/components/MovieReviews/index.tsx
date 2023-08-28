@@ -68,31 +68,7 @@ export const MovieReviews:React.FC<{isReviewed: unknown}> = (props) => {
                 <div className="p-2 pb-0 text-dark" key={review.id}>
                   {review.reviewText}
                   <hr />
-                  {/* {review.replies.map((reply: any) => {
-                    return (
-                      <>
-                      <div>
-                        <div className="column text-light"  >
-                          <div className="card-header">
-                            <div className=" row">
-                              <div className="col-12 col-md-5 ms-2" >
-                                {reply.userName} replied
-                              </div>                              
-                            </div>
-                          </div>
-                       
-                        </div>
-                        
-
-                        <div>
-                          {reply.replyText}
-                          <hr />
-                        </div>
-                        </div>
-                      </>
-                    );
-                  })} */}
-                  
+    
                 </div>
                 <p className="ms-2 text-dark">
                 {review.replies.length}{' '} Replies:  Click to{' '}

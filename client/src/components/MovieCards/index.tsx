@@ -35,7 +35,7 @@ export const MovieCards: React.FC<{
                   >
                     <div className="movie-card card">
                       <div className="col-3">
-                        <Link to={`/Movie/` + movie.id}>
+                        <Link to={`/movie/` + movie.id}>
                           <img
                             id={movie.id}
                             className="card-image"
