@@ -5,7 +5,7 @@ import UserModel from "../../models/UserModel";
 import ReviewModel from "../../models/ReviewModel";
 import ReplyModel from "../../models/ReplyModel";
 import { error } from "console";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { ReplyForm } from "../ReplyForm/ReplyForm";
 
 export const MovieReviews:React.FC<{isReviewed: unknown}> = (props) => {
@@ -18,7 +18,7 @@ export const MovieReviews:React.FC<{isReviewed: unknown}> = (props) => {
   const { movieObj, isReviewed} = props;
   const [reviewData, setReviewData] = useState([]);
   const { authState } = useOktaAuth();
-  console.log(reviewData);
+
 const addReply = async (data) => {
 
   if (authState && authState.isAuthenticated) {
@@ -94,12 +94,13 @@ const addReply = async (data) => {
       <div className="p-4" key={isReviewed}>                  
         {reviewData.map((review: any, index: number) => (
           
-            <div className="py-1" key={review.id} >
-              <div className="card">
+            <div className="py-1" key={review.id}>
+             <Link className="text-decoration-none text-light" to={`/review/` + review.id}>
+              <div className="card"  onClick={(e)=>console.log(review.id)}>
                 <div className="column">
                   <div className="card-header">
                     <div className=" row">
-                      <div className="col-12 col-md-5 ms-2" onClick={(e)=>console.log(review.id)} datatype={review.id}>
+                      <div className="col-12 col-md-5 ms-2" datatype={review.id}>
                         {review.userId.userName}
                       </div>
                       <div className="col-12 col-md-6 text-end ms-auto">
@@ -146,8 +147,9 @@ const addReply = async (data) => {
                 {/* <button className="btn btn-primary m-auto" style={{width:150}} datatype={review.id} onClick={()=>{handleAddReply()}}>Submit</button>
                 <ReplyForm /> */}
               </div>
-              
+              </Link>
             </div>
+
           
         ))}
       </div>

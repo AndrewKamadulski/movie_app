@@ -16,6 +16,7 @@ import { oktaConfig } from "./lib/oktaconfig";
 import { OktaAuth, toRelativeUrl } from "@okta/okta-auth-js";
 import { Security, LoginCallback } from "@okta/okta-react";
 import LoginWidget from "./Auth/LoginWidget";
+import { SingleReview } from "./pages/SingleReview";
 
 const oktaAuth = new OktaAuth(oktaConfig);
 function App() {  
@@ -51,10 +52,18 @@ function App() {
             />
 
             <Route
-              path="/Movie/:id"
+              path="/movie/:id"
               element={<SingleMovie                
                  movieArr={movieArr}> 
                  </SingleMovie>}
+            />
+
+            
+<Route
+              path="/review/:id"
+              element={<SingleReview>             
+                 
+                 </SingleReview>}
             />
 
             <Route
