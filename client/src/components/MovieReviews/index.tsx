@@ -6,6 +6,7 @@ import ReviewModel from "../../models/ReviewModel";
 import ReplyModel from "../../models/ReplyModel";
 import { error } from "console";
 import { useParams } from "react-router-dom";
+import { ReplyForm } from "../ReplyForm/ReplyForm";
 
 export const MovieReviews:React.FC<{isReviewed: unknown}> = (props) => {
 
@@ -90,10 +91,10 @@ const addReply = async (data) => {
     );
   } else if(reviewData.length) {
     return (
-      <div className="p-5" key={isReviewed}>                  
+      <div className="p-4" key={isReviewed}>                  
         {reviewData.map((review: any, index: number) => (
           
-            <div className="py-2" key={review.id} >
+            <div className="py-1" key={review.id} >
               <div className="card">
                 <div className="column">
                   <div className="card-header">
@@ -108,10 +109,10 @@ const addReply = async (data) => {
                     </div>
                   </div>
                 </div>
-                <div className="p-2 text-dark" key={review.id}>
+                <div className="p-2 pb-0 text-dark" key={review.id}>
                   {review.reviewText}
                   <hr />
-                  {review.replies.map((reply: any) => {
+                  {/* {review.replies.map((reply: any) => {
                     return (
                       <>
                       <div>
@@ -134,9 +135,16 @@ const addReply = async (data) => {
                         </div>
                       </>
                     );
-                  })}
+                  })} */}
+                  
                 </div>
-                <button className="btn btn-lg btn-primary" datatype={review.id} onClick={()=>{handleAddReply()}}>add reply</button>
+                <p className="ms-2 text-dark">
+                {review.replies.length}{' '} Replies:  Click to{' '}
+                    {review.replies.length > 0 ? 'see' : 'start'} the discussion!
+                  </p>
+                
+                {/* <button className="btn btn-primary m-auto" style={{width:150}} datatype={review.id} onClick={()=>{handleAddReply()}}>Submit</button>
+                <ReplyForm /> */}
               </div>
               
             </div>
