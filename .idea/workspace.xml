@@ -6,12 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="d8d3066b-7957-410f-bce6-2738e74686e7" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/MovieReviews/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/MovieReviews/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/ReplyForm/ReplyForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/ReplyForm/ReplyForm.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/SingleReview.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/SingleReview.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/andrewkamadulski/movie_app/dao/ReviewsRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/andrewkamadulski/movie_app/dao/ReviewsRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/andrewkamadulski/movie_app/dao/UsersRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/andrewkamadulski/movie_app/dao/UsersRepository.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,16 +39,16 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;ToolWindowRun.ShowToolbar&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;replies&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/kamad/library-app&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.import&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "ToolWindowRun.ShowToolbar": "false",
+    "git-widget-placeholder": "profile",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/kamad/library-app",
+    "settings.editor.selected.configurable": "editor.preferences.import"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.andrewkamadulski.movie_app.utils" />
