@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 
 export const SingleMovie: React.FC<{movieArr: unknown }> = (props) => {  
-  const movie = useParams();
+  const {id} = useParams();
   const [isReviewed, setIsReviewed] = useState(false);
   const [movieObj, setMovieObj] = useState({});
   const { authState } = useOktaAuth();
@@ -13,7 +13,7 @@ export const SingleMovie: React.FC<{movieArr: unknown }> = (props) => {
 
   useEffect(()=>{  
  
-const url = `https://api.themoviedb.org/3/movie/${movie.id}language=en-US`;
+const url = `https://api.themoviedb.org/3/movie/${id}language=en-US`;
 const options = {
   method: 'GET',
   headers: {
@@ -30,7 +30,7 @@ fetch(url, options)
     setMovieObj(data);
   });
 });
-}, [movie.id]);
+}, [id]);
 
 console.log(movieObj);
 

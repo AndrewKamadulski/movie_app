@@ -59,7 +59,7 @@ function App() {
              element={<SingleReview></SingleReview>} 
              />
 
-            <Route path="/profile/:username"
+            <Route path="/profile/:userName"
              element={<Profile></Profile>} 
              />
 

@@ -5,8 +5,6 @@ import "./navbar.css";
 export const Navbar = () => {
   const { oktaAuth, authState } = useOktaAuth();
 
-  console.log(authState.idToken.claims.name);
-
   if (!authState) {
     return(
       <div>Loading......</div>
