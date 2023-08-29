@@ -73,7 +73,7 @@ function App() {
             <Route path="/login/callback" component={LoginCallback} />
           </Routes>
 
-          <Footer />
+          {/* <Footer /> */}
         </Security>
       </Router>
     </>

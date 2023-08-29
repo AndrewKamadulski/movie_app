@@ -60,5 +60,14 @@ body {
 
 .card-header {
   background-color: black;
+  border-radius: 6px !important;
 }
 
+
+.review-container {
+  height:75vh;
+}
+
+.single-review {
+  min-height: 30vh;
+}

@@ -6,7 +6,7 @@ import "./reviewform.css";
 import { useOktaAuth } from '@okta/okta-react';
 
 export const ReviewForm: React.FC<{ isReviewed: unknown, setIsReviewed: unknown }> = (props) => {
-    const { movieObj, isReviewed, setIsReviewed } = props;
+    const { movieObj, isReviewed, setIsReviewed} = props;
 
     const { authState } = useOktaAuth();
 
@@ -23,8 +23,7 @@ export const ReviewForm: React.FC<{ isReviewed: unknown, setIsReviewed: unknown 
 
       
       const handleFormSubmit = async event => {   
-        event.preventDefault()
-         
+        event.preventDefault()              
         try {
 
             const userId = parseInt(authState.idToken.claims.user_id);
@@ -47,18 +46,18 @@ export const ReviewForm: React.FC<{ isReviewed: unknown, setIsReviewed: unknown 
             
             if(!validateMovie.ok) {     
               
-              addMovie(movie).then(()=> addReview(review));
-              console.log(movie);
+              addMovie(movie).then(()=> addReview(review)).then(()=>setIsReviewed(!isReviewed));   
             }
         
         
             if(validateMovie.ok) {
               addReview(review);
+              
             }
                   
           setText('');
-          setCharacterCount(0);
-          setIsReviewed(true);
+          setCharacterCount(0);        
+            
           
         } catch (e) {
           console.error(e);
@@ -109,7 +108,8 @@ const addMovie = async (data) => {
             throw new Error("Unable to add review to the database.");
           }
       
-          console.log("Review added to database.")
+          console.log("Review added to database.")   
+          
       
         }
         

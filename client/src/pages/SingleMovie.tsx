@@ -1,16 +1,15 @@
 import { useOktaAuth } from "@okta/okta-react";
 import { MovieReviews } from "../components/MovieReviews";
 import { ReviewForm } from "../components/ReviewForm/ReviewForm";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 
 export const SingleMovie: React.FC<{movieArr: unknown }> = (props) => {  
   const movie = useParams();
-
   const [isReviewed, setIsReviewed] = useState(false);
   const [movieObj, setMovieObj] = useState({});
-
   const { authState } = useOktaAuth();
+
 
   useEffect(()=>{  
  
@@ -31,7 +30,7 @@ fetch(url, options)
     setMovieObj(data);
   });
 });
-}, [isReviewed, movie.id]);
+}, [movie.id]);
 
 console.log(movieObj);
 
@@ -63,7 +62,7 @@ console.log(movieObj);
             </div>
           </div>
         </div>
-        {authState?.isAuthenticated && !isReviewed && <ReviewForm movieObj={movieObj} isReviewed={isReviewed} setIsReviewed={setIsReviewed}/>}
+        {authState?.isAuthenticated && <ReviewForm movieObj={movieObj} isReviewed={isReviewed} setIsReviewed={setIsReviewed} />}
         <MovieReviews movieObj={movieObj} isReviewed={isReviewed} />
       </div>
     </>

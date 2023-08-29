@@ -20,7 +20,7 @@ export const MovieReviews:React.FC<{isReviewed: unknown}> = (props) => {
   const { authState } = useOktaAuth();
 
 
-
+console.log(isReviewed);
 
   useEffect(() => {
  
@@ -29,7 +29,8 @@ export const MovieReviews:React.FC<{isReviewed: unknown}> = (props) => {
     ).then(function (response) {
       response.json().then(function (data) {
        try { 
-        setReviewData(data._embedded.reviews);       
+        setReviewData(data._embedded.reviews);
+        console.log("data fetched")  
       } catch {
         console.error;
       }
@@ -37,21 +38,20 @@ export const MovieReviews:React.FC<{isReviewed: unknown}> = (props) => {
     });
   }, [isReviewed, movie.id]);
 
-
-  if (!reviewData.length) {
+  if (reviewData.length === 0) {
     return (
-      <div className="ms-3" key={isReviewed}>
+      <div className="ms-3" key={!isReviewed}>
         <h3>No Comments Yet</h3>      
       </div>
     );
-  } else if(reviewData.length) {
+  } else   {
     return (
-      <div className="p-4" key={isReviewed}>                  
+      <div className="p-4" key={!isReviewed}>                  
         {reviewData.map((review: any, index: number) => (
           
             <div className="py-1" key={review.id}>
              <Link className="text-decoration-none text-light" to={`/review/` + review.id}>
-              <div className="card"  onClick={(e)=>console.log(review.id)}>
+              <div className="card">
                 <div className="column">
                   <div className="card-header">
                     <div className=" row">
@@ -75,9 +75,7 @@ export const MovieReviews:React.FC<{isReviewed: unknown}> = (props) => {
                     {review.replies.length > 0 ? 'see' : 'start'} the discussion!
                   </p>
                 
-                {/* <button className="btn btn-primary m-auto" style={{width:150}} datatype={review.id} onClick={()=>{handleAddReply()}}>Submit</button>
-                <ReplyForm /> */}
-              </div>
+               </div>
               </Link>
             </div>
 
