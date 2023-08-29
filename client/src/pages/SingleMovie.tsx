@@ -1,5 +1,5 @@
 import { useOktaAuth } from "@okta/okta-react";
-import { MovieReviews } from "../components/MovieReviews";
+import { MovieReviews } from "../components/MovieReviews/MovieReviews";
 import { ReviewForm } from "../components/ReviewForm/ReviewForm";
 import { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";

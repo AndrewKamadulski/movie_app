@@ -1,4 +1,4 @@
-import { MovieCards } from "../components/MovieCards";
+import { MovieCards } from "../components/MovieCards/MovieCards";
 import { ReviewForm } from "../components/ReviewForm/ReviewForm";
 
 

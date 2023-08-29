@@ -5,6 +5,8 @@ import "./navbar.css";
 export const Navbar = () => {
   const { oktaAuth, authState } = useOktaAuth();
 
+  console.log(authState.idToken.claims.name);
+
   if (!authState) {
     return(
       <div>Loading......</div>
@@ -56,8 +58,8 @@ export const Navbar = () => {
             <Link to="/" className="nav-link text-light" onClick={handleLogout}>Logout</Link>
           </li>
                   <li className="nav-item">
-                  <Link to="/" className="nav-link text-light">
-                    UserName
+                  <Link to={`/profile/` + authState.idToken.claims.name } className="nav-link text-light">
+                    {authState.idToken.claims.name}
                   </Link>
                 </li>
                 </>

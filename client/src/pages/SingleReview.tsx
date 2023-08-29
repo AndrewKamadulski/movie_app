@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { ReplyForm } from "../components/ReplyForm/ReplyForm";
 import { useOktaAuth } from "@okta/okta-react";
 
@@ -40,8 +40,8 @@ export const SingleReview = () => {
               <div className="card-header">
                 <div className=" row">
                   <div className="col-12 col-md-5 ms-2">
-                    {singleMovieReviewData[0].userId.userName} on{" "}
-                    {singleMovieReviewData[0].movieId.title}
+                    <Link className="text-decoration-none text-light" to={`/profile/` +  singleMovieReviewData[0].userId.userName}>{singleMovieReviewData[0].userId.userName} on{" "}</Link>
+                    <Link className="text-decoration-none text-light" to={`/movie/` + singleMovieReviewData[0].movieId.id}>{singleMovieReviewData[0].movieId.title}</Link>
                   </div>
                   <div className="col-12 col-md-6 text-end ms-auto">
                     {/* {review.createdAt.substring(0, 10)} @{" "}
@@ -60,7 +60,7 @@ export const SingleReview = () => {
                 return (
                   <div>
                     <div className="ms-3 card-header text-light">
-                      {reply.userName}
+                      <Link className="text-decoration-none text-light" to={`/profile/`+ reply.userName}>{reply.userName}</Link>
                       {" replied"}
                     </div>
                     <div className="ms-5 my-2" key={isReplied}>{reply.replyText}</div>

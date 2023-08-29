@@ -2,12 +2,10 @@ import {
   BrowserRouter as Router,
   Route,
   Routes,
-  useNavigate,
   redirect,
 } from "react-router-dom";
 import "./App.css";
 import { Footer } from "./components/Footer";
-import { MovieCards } from "./components/MovieCards";
 import { Navbar } from "./components/Navbar/Navbar";
 import { Homepage } from "./pages/Homepage";
 import { SingleMovie } from "./pages/SingleMovie";
@@ -17,9 +15,10 @@ import { OktaAuth, toRelativeUrl } from "@okta/okta-auth-js";
 import { Security, LoginCallback } from "@okta/okta-react";
 import LoginWidget from "./Auth/LoginWidget";
 import { SingleReview } from "./pages/SingleReview";
+import { Profile } from "./pages/Profile";
 
 const oktaAuth = new OktaAuth(oktaConfig);
-function App() {  
+function App() {
   const [movieArr, setMovieArr] = useState([]);
 
   const customAuthHandler = () => {
@@ -44,7 +43,7 @@ function App() {
             <Route
               path="/"
               element={
-                <Homepage               
+                <Homepage
                   movieArr={movieArr}
                   setMovieArr={setMovieArr}
                 ></Homepage>
@@ -53,18 +52,16 @@ function App() {
 
             <Route
               path="/movie/:id"
-              element={<SingleMovie                
-                 movieArr={movieArr}> 
-                 </SingleMovie>}
+              element={<SingleMovie movieArr={movieArr}></SingleMovie>}
             />
 
-            
-<Route
-              path="/review/:id"
-              element={<SingleReview>             
-                 
-                 </SingleReview>}
-            />
+            <Route path="/review/:id"
+             element={<SingleReview></SingleReview>} 
+             />
+
+            <Route path="/profile/:username"
+             element={<Profile></Profile>} 
+             />
 
             <Route
               path="/login"
