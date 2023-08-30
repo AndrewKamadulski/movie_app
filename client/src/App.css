@@ -71,3 +71,7 @@ body {
 .single-review {
   min-height: 30vh;
 }
+
+.bg-black {
+  background-color: black
+}
