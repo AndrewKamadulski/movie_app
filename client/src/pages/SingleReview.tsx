@@ -41,7 +41,7 @@ export const SingleReview = () => {
                 <div className=" row">
                   <div className="col-12 col-md-5 ms-2">
                     <Link className="text-decoration-none text-light" to={`/profile/` +  singleMovieReviewData[0].userId.userName}>{singleMovieReviewData[0].userId.userName}</Link>
-                   <div> <Link className="text-decoration-none text-light" to={`/movie/` + singleMovieReviewData[0].movieId.id}>on{" "}{singleMovieReviewData[0].movieId.title}</Link></div>
+                   <div> <Link className="text-decoration-none text-light" to={`/movie/` + singleMovieReviewData[0].movieId.id}>{singleMovieReviewData[0].movieId.title}</Link></div>
                   </div>
                   <div className="col-12 col-md-6 text-end ms-auto">
                     {/* {review.createdAt.substring(0, 10)} @{" "}
@@ -63,7 +63,8 @@ export const SingleReview = () => {
                       <Link className="text-decoration-none text-light" to={`/profile/`+ reply.userName}>{reply.userName}</Link>
                       {" replied"}
                     </div>
-                    <div className="ms-5 my-2" key={isReplied}>{reply.replyText}</div>
+                    <div className="ms-5 my-2" key={isReplied}>{reply.replyText}<hr></hr></div>
+                    
                   </div>
                 );
               })}

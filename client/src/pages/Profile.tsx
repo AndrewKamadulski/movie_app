@@ -13,7 +13,7 @@ export const Profile = () => {
        isSameUser = true;
     }
 
-    console.log(profileUser);
+   try{ console.log(profileUser._embedded.friends);} catch{console.log("caught")}
 
     useEffect(() => {
         fetch(
@@ -40,17 +40,15 @@ export const Profile = () => {
     return(
         <>
         <div>
-            <div className="flex-row m-3 bg-black rounded">
-            <h2 className="p-3 display-inline-block">
+            <div className="m-3 bg-black rounded">
+            <h2 className="p-3">
             {isSameUser ? "Your" : userName + "'s"} profile        
             </h2>
+            {!isSameUser && <button className="">Add Friend</button>}
             </div>
         </div>
-          <div className="flex-row justify-space-between mb-3">
-          <div className="col-12 mb-3 col-lg-8">
-    
-
-
+          <div className="mb-3 row">          
+          <div className="col-12 mb-3 col-lg-8"> 
         {profileUser && 
      <div className="p-4">
         {profileUser._embedded.reviews.map((review: any, index: number) => (
@@ -94,21 +92,26 @@ export const Profile = () => {
             </Link>
           </div>
         ))}
+        
       </div>
-}
-
-
-
-
-
-
+        }    
     
-        </div>
-    
-        <div className="col-12 col-lg-3 mb-3">
-        friends
-        </div>
         </div> 
+        <div className="col-12 col-lg-3 w-25">
+        <div className="bg-black rounded mt-5">    
+        <h4>{isSameUser ? "Your" : userName + "'s"}  friends</h4>
+      </div>   
+      <div className="bg-light rounded">
+      {profileUser && profileUser._embedded.friends.map(friend => (
+        <button className="btn w-100 display-block mb-2" key={friend.friendId.id}>
+          <Link className="text-decoration-none text-dark fs-3" to={`/profile/${friend.friendId.userName}`}>{friend.friendId.userName}</Link>
+        </button>        
+      ))}
+    </div>
+
+        </div>
+        </div>
+   
         </>
     );
 }

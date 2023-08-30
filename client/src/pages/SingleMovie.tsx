@@ -36,7 +36,7 @@ console.log(movieObj);
 
   return (
     <>
-      <div className="container-fluid mt-3 mb-5">
+      <div className="container-fluid container mt-3 mb-5">
         <div className="movie-detail">
           <div className="movie_title">
             {movieObj ? movieObj.original_title : ""}
@@ -62,7 +62,12 @@ console.log(movieObj);
             </div>
           </div>
         </div>
-        {authState?.isAuthenticated && <ReviewForm movieObj={movieObj} isReviewed={isReviewed} setIsReviewed={setIsReviewed} />}
+        
+        {authState?.isAuthenticated && 
+          <div className="ms-4">
+            <ReviewForm movieObj={movieObj} isReviewed={isReviewed} setIsReviewed={setIsReviewed} />
+          </div>}
+        
         <MovieReviews movieObj={movieObj} isReviewed={isReviewed} />
       </div>
     </>
