@@ -16,9 +16,9 @@ export const Navbar = () => {
   
 
   return (
-    <nav className="navbar navbar-dark navbar-expand-lg">
+    <nav className="navbar navbar-dark bg-red navbar-expand-lg">
       <div className="container-fluid">
-        <Link to="/" className="navbar-brand fs-1 px-3 text-light">
+        <Link to="/" className="navbar-brand logo fs-1 px-1 text-light">
           Horror Scorer
         </Link>
         <button

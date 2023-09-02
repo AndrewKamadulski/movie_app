@@ -3,4 +3,12 @@
 }
 
 
-
+html,
+body {
+  min-height: 100%;
+  background: url(https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/7be60dbe-4a05-4c97-adb3-c05193e79373/dc46272-b30ee48b-5fc6-46a2-836c-e2492f7751ee.gif?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzdiZTYwZGJlLTRhMDUtNGM5Ny1hZGIzLWMwNTE5M2U3OTM3M1wvZGM0NjI3Mi1iMzBlZTQ4Yi01ZmM2LTQ2YTItODM2Yy1lMjQ5MmY3NzUxZWUuZ2lmIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.g9qMVpRAnFNYW58lEL5BN6pKFywc3kbNyx6_AsDfXCI) no-repeat center center fixed !important;
+  -webkit-background-size: cover !important;
+  -moz-background-size: cover !important;
+  -o-background-size: cover !important;
+  background-size: cover !important;
+}

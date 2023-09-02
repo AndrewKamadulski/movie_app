@@ -64,14 +64,15 @@ body {
 }
 
 
-.review-container {
-  height:75vh;
+
+.single-review-container{
+  min-height:70vh;
 }
 
 .single-review {
   min-height: 30vh;
 }
 
-.bg-black {
-  background-color: black
+.bg-red {
+  background-color: rgb(170, 20, 20);
 }

@@ -32,9 +32,9 @@ export const SingleReview = () => {
 
   return (
     <>    
-    <div className="review-container" key={isReplied}>        
+    <div className="container pt-5" key={isReplied}>        
       {singleMovieReviewData && (
-        <div className="p-3" >
+        <div className="p-3 single-review-container">
           <div className="card single-review">
             <div className="column">
               <div className="card-header">

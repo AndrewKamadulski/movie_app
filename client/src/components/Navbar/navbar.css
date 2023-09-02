@@ -1,4 +1,12 @@
-.navbar{    
-    background-color: black;
+.navbar{  
+
+    height: 15dvh;
     }
 
+.logo {
+    font-family: 'Nosifer', cursive;          
+}
+
+.nav-item {
+    font-family: 'Reggae One', cursive;
+}

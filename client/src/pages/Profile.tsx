@@ -31,16 +31,18 @@ export const Profile = () => {
 
       if(!authState?.isAuthenticated ) {
         return (
+          <div className="text-danger"style={{height:500}}>
           <h4 className="m-5">
             You must logged in to see this page. Use the navigation links above to sign up or log in!
           </h4>
+          </div>
         );
     } 
    
     return(
         <>
         <div>
-            <div className="m-3 bg-black rounded">
+            <div className="m-3 bg-red rounded">
             <h2 className="p-3">
             {isSameUser ? "Your" : userName + "'s"} profile        
             </h2>
@@ -59,7 +61,7 @@ export const Profile = () => {
             >
               <div className="card">
                 <div className="column">
-                  <div className="card-header">
+                  <div className="card-header bg-red">
                     <div className=" row">
                       <div
                         className="col-12 col-md-5 ms-2 "
@@ -98,7 +100,7 @@ export const Profile = () => {
     
         </div> 
         <div className="col-12 col-lg-3 w-25">
-        <div className="bg-black rounded mt-5">    
+        <div className="bg-red rounded mt-5">    
         <h4>{isSameUser ? "Your" : userName + "'s"}  friends</h4>
       </div>   
       <div className="bg-light rounded">
