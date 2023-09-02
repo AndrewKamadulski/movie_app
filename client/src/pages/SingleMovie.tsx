@@ -11,6 +11,7 @@ export const SingleMovie: React.FC<{movieArr: unknown }> = (props) => {
   const [movieObj, setMovieObj] = useState({});
   const { authState } = useOktaAuth();
 
+console.log(isReviewed);
 
   useEffect(()=>{  
  

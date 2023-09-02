@@ -10,6 +10,7 @@ export const MovieReviews: React.FC<{ isReviewed: unknown }> = (props) => {
   const [reviewData, setReviewData] = useState([]);
   const { authState } = useOktaAuth();
 
+
   useEffect(() => {
     fetch(
       `http://www.localhost:8080/api/reviews/search/findByMovieId?movieId=${parseInt(

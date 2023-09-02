@@ -49,11 +49,11 @@ export const Profile = () => {
             {!isSameUser && <button className="">Add Friend</button>}
             </div>
         </div>
-          <div className="mb-3 row">          
+          <div className="mb-3 row profile-container">          
           <div className="col-12 mb-3 col-lg-8"> 
         {profileUser && 
      <div className="p-4">
-        {profileUser._embedded.reviews.map((review: any, index: number) => (
+        {profileUser._embedded.reviews && profileUser._embedded.reviews.map((review: any, index: number) => (
           <div className="py-1" key={review.id}>
             <Link
               className="text-decoration-none text-light"

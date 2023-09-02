@@ -69,6 +69,11 @@ body {
   min-height:70vh;
 }
 
+.profile-container{
+  min-height: 50vh;
+}
+
+
 .single-review {
   min-height: 30vh;
 }
