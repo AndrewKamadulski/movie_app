@@ -70,7 +70,7 @@ export const MovieReviews: React.FC<{ isReviewed: unknown }> = (props) => {
                 </div>
                 <p className="ms-2 text-dark">
                   {review.replies.length} Replies: Click to{" "}
-                  {review.replies.length > 0 ? "see" : "start"} the discussion!
+                  {review.replies.length < 1 && authState?.isAuthenticated ? "start" : "see"} the discussion!
                 </p>
               </div>
             </Link>

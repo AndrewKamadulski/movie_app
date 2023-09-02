@@ -3,6 +3,7 @@ import { MovieReviews } from "../components/MovieReviews/MovieReviews";
 import { ReviewForm } from "../components/ReviewForm/ReviewForm";
 import { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
+import { StarsReview } from "../components/StarReview/StarReview";
 
 export const SingleMovie: React.FC<{movieArr: unknown }> = (props) => {  
   const {id} = useParams();
@@ -55,6 +56,8 @@ console.log(movieObj);
                   <hr />
                 </span>
                 Release date:<p>{movieObj.release_date}</p>
+                Horror Scorer Rating: 
+                <StarsReview rating={3.5} size={32} />
                 <span>
                   <hr />
                 </span>
