@@ -9,4 +9,8 @@
 
 .nav-item {
     font-family: 'Reggae One', cursive;
+    margin-left: 2%;
+}
+.navbar-dropdown {
+    z-index: 999 !important;
 }

@@ -109,12 +109,13 @@ const addMovie = async (data) => {
           }
       
           console.log("Review added to database.")   
+          setIsReviewed(!isReviewed);
           
       
         }
         
       }
-    
+   
 
     return(    
         <div className='my-3'>

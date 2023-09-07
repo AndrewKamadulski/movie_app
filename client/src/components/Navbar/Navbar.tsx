@@ -33,7 +33,7 @@ export const Navbar = () => {
           <span className="navbar-toggler-icon"></span>
         </button>
         <div
-          className="collapse navbar-collapse fs-4"
+          className="collapse navbar-collapse bg-red navbar-dropdown fs-4"
           id="navbarSupportedContent"
         >
           <ul className="navbar-nav ms-auto mb-2 mb-lg-0">

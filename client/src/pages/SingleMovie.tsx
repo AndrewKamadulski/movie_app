@@ -11,9 +11,7 @@ export const SingleMovie: React.FC<{movieArr: unknown }> = (props) => {
   const [movieObj, setMovieObj] = useState({});
   const { authState } = useOktaAuth();
 
-console.log(isReviewed);
-
-  useEffect(()=>{  
+useEffect(()=>{  
  
 const url = `https://api.themoviedb.org/3/movie/${id}language=en-US`;
 const options = {
@@ -27,14 +25,10 @@ const options = {
 fetch(url, options)
 .then(function (response) {
   response.json().then(function (data) {
-
-    console.log(data);
     setMovieObj(data);
   });
 });
 }, [id]);
-
-console.log(movieObj);
 
   return (
     <>
