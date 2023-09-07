@@ -1,7 +1,7 @@
 import { useOktaAuth } from "@okta/okta-react";
 import { MovieReviews } from "../components/MovieReviews/MovieReviews";
 import { ReviewForm } from "../components/ReviewForm/ReviewForm";
-import { useEffect, useRef, useState } from "react";
+import { useEffect,  useState } from "react";
 import { useParams } from "react-router-dom";
 import { StarsReview } from "../components/StarReview/StarReview";
 
@@ -9,7 +9,11 @@ export const SingleMovie: React.FC<{movieArr: unknown }> = (props) => {
   const {id} = useParams();
   const [isReviewed, setIsReviewed] = useState(false);
   const [movieObj, setMovieObj] = useState({});
+  const [compositeRating, setCompositeRating] = useState(0);
+  const [userRating, setUserRating] =useState(0);
+  const [ratingsArray, setRatingsArray] = useState([])
   const { authState } = useOktaAuth();
+ 
 
 useEffect(()=>{  
  
@@ -29,6 +33,47 @@ fetch(url, options)
   });
 });
 }, [id]);
+console.log(id)
+
+useEffect(()=>{  
+ 
+  const url = `http://www.localhost:8080/api/movies/${id}/ratings`;
+  
+  fetch(url)
+  .then(function (response) {
+    response.json().then(function (data) {    
+    const tempArray = []     
+    data._embedded.ratings.map(el => tempArray.push(el.rating))       
+    const sum = tempArray.reduce((accumulator, currentValue) => {
+      return accumulator + currentValue;
+    }, 0);
+    const average = sum / tempArray.length; 
+    setRatingsArray(tempArray)    
+    const roundedAvg = round(average);    
+    setCompositeRating(roundedAvg);
+    });
+   
+  });
+  }, [id]);
+
+  useEffect(()=>{
+    const url = `http://www.localhost:8080/api/movies/${id}/ratings`;
+    fetch(url).then(function (response) {
+      response.json().then(function (data) {    
+          const ratingData = data._embedded.ratings.filter((rating) => rating.userId.userName === authState?.idToken?.claims.name)
+         setUserRating(ratingData[0].rating);
+     
+      });
+     
+    });
+    },[authState?.idToken?.claims.name, id]);
+
+
+  const round = (num) => {
+    const rounded = Math.round(num *2)/2
+  return rounded;
+  }
+  console.log(movieObj)
 
   return (
     <>
@@ -51,8 +96,14 @@ fetch(url, options)
                   <hr />
                 </span>
                 Release date:<p>{movieObj.release_date}</p>
-                Horror Scorer Rating: 
-                <StarsReview rating={3.5} size={32} />
+                Horror Scorer Rating <br></br>
+                ({ratingsArray.length} ratings): 
+                <StarsReview rating={compositeRating} size={32} />
+                <hr></hr>
+                <div>
+                Your Rating: 
+                <StarsReview rating={userRating} size={32} />
+                </div>
                 <span>
                   <hr />
                 </span>

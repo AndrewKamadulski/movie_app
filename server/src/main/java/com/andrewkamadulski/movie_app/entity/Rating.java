@@ -13,7 +13,7 @@ public class Rating {
     @Column(name="id", nullable = false)
     private Long id;
 
-       @Column(name="rating", nullable = false)
+    @Column(name="rating", nullable = false)
     private Float rating;
 
     @ManyToOne(optional = false)
