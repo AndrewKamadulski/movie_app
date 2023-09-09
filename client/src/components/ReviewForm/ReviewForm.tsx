@@ -131,7 +131,7 @@ const addMovie = async (data) => {
             onChange={handleChange}
             ></textarea>
             <div className='my-1 mx-2'>
-            <button className="btn col-1 btn-dark w-100" type="submit">
+            <button className="btn submit-btn bg-red text-light w-100" type="submit">
             Submit
             </button>
             </div>
