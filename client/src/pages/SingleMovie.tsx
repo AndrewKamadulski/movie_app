@@ -11,12 +11,14 @@ import RatingModel from "../models/RatingModel";
 export const SingleMovie: React.FC<{ movieArr: unknown }> = (props) => {
   const { id } = useParams();
   const [isReviewed, setIsReviewed] = useState(false);
+  const [isRated, setIsRated] = useState(false);
   const [movieObj, setMovieObj] = useState({});
   const [compositeRating, setCompositeRating] = useState(0);
   const [userRating, setUserRating] = useState();
-  const [ratingsArray, setRatingsArray] = useState([]);   
-  const [isRated, setIsRated] = useState(false);
+  const [ratingsArray, setRatingsArray] = useState([]);    
   const { authState } = useOktaAuth();  
+
+  console.log(movieObj);
 
 
 
@@ -44,6 +46,7 @@ export const SingleMovie: React.FC<{ movieArr: unknown }> = (props) => {
     const url = `http://www.localhost:8080/api/movies/${id}/ratings`;
 
     fetch(url).then(function (response) {
+      if(response.ok){
       response.json().then(function (data) {
         const tempArray = [];
         data._embedded.ratings.map((el) => tempArray.push(el.rating));
@@ -54,31 +57,26 @@ export const SingleMovie: React.FC<{ movieArr: unknown }> = (props) => {
         setRatingsArray(tempArray);
         const roundedAvg = round(average);
         setCompositeRating(roundedAvg);
-      });
-    });
-  }, [id]);
 
-  useEffect(() => {
-    const url = `http://www.localhost:8080/api/movies/${id}/ratings`;
-    fetch(url).then(function (response) {
-      response.json().then(function (data) {
         const ratingData = data._embedded.ratings.filter(
           (rating) => rating.userId.userName === authState?.idToken?.claims.name
         );
         if(ratingData[0]) {
-          setUserRating(ratingData[0].rating);
-          setIsRated(true);
+          setUserRating(ratingData[0].rating);        
         };
       });
+     }
     });
-  }, [authState?.idToken?.claims.name, id, userRating]);
+  }, [authState?.idToken?.claims.name, id, isRated]);
 
-  const round = (num) => {
+
+
+  const round = (num: number) => {
     const rounded = Math.round(num * 2) / 2;
     return rounded;
   };
   
-  const addMovie = async (data) => {
+  const addMovie = async (data: MovieModel) => {
 
     if (authState && authState.isAuthenticated) {
       const url = `http://localhost:8080/api/movies/secure/add/movie`;
@@ -96,35 +94,57 @@ export const SingleMovie: React.FC<{ movieArr: unknown }> = (props) => {
       }
   
       console.log("Movie added to database.")
+    
   
     }
     
   }
 
-
-  const validateMovie = async (ratingRequestData) => { 
-    await fetch(
+  const validateMovie = async (ratingRequestData: RatingModel) => {
+    console.log(ratingRequestData)   
+    const response = await fetch(
     `http://www.localhost:8080/api/movies/${id}`
   )
   
-  if(!validateMovie.ok) { 
+  if(!response.ok) { 
     const movie = new MovieModel(movieObj.id, movieObj.title);    
-    addMovie(movie).then(addRating(ratingRequestData));   
+    addMovie(movie)
+    .then(() => (addRating(ratingRequestData)));  
   }
 
-  if(validateMovie.ok) {
-    addRating(ratingRequestData)   
+  if(response.ok) {
+    addRating(ratingRequestData).then(()=>console.log("and then")).then(()=>setUserRating(ratingRequestData.rating));   
   }
 }
 
 
+const addRating = async (data: RatingModel) => {
+    if (authState && authState.isAuthenticated) {
+    const url = `http://localhost:8080/api/ratings/secure/add/rating`;
+    const requestOptions = {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${authState.accessToken?.accessToken}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    };
+    const addRatingResponse = await fetch(url, requestOptions);
+    if (!addRatingResponse.ok) {
+      throw new Error("Unable to add rating.");
+    }  
+    
+    if (addRatingResponse.ok) {
+      setIsRated(true);
+      console.log("rating added");
+    }           
+  }
+  
+}
  
 
-  function handleStarValue(value: number) {
-
-    
-    console.log(value);
-    
+  function handleStarValue(value: number) {    
+    console.log(value);  
 
     const { user_id, name, email } = authState?.idToken?.claims;
     const user = new UserModel(parseInt(user_id), name, email);  
@@ -133,70 +153,60 @@ export const SingleMovie: React.FC<{ movieArr: unknown }> = (props) => {
     const ratingRequestData = new RatingModel(value, user, movie);
     validateMovie(ratingRequestData);
   
-    console.log(ratingRequestData)
-   
+     
   }
 
-  const addRating = async (data) => {
-    console.log(data.rating)
-
-    if (authState && authState.isAuthenticated) {
-      const url = `http://localhost:8080/api/ratings/secure/add/rating`;
-      const requestOptions = {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${authState.accessToken?.accessToken}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      };
-      const addRatingResponse = await fetch(url, requestOptions);
-      if (!addRatingResponse.ok) {
-        throw new Error("Unable to add rating.");
-      }
   
-      
-      setUserRating(data.rating);  
-    }
-    
-  }
 
+  const releaseDateConversion = (date: string) => {
+    if(date){  
+    const year = date.slice(0,4);   
+    const month = date.slice(5,7);    
+    const day = date.slice(8,11);
+    date = (`${month}-${day}-${year}`)
+    return date;
+    } 
+    return date;
+  }
+  const releaseDate = releaseDateConversion(movieObj.release_date);
 
 
   return (
     <>
-      <div className="container-fluid container mt-3 mb-5">
-        <div className="movie-detail">
+      <div className="container-fluid  d-flex container mt-3 mb-5">
+        <div className="movie-detail movie-container">
           <div className="movie_title">
             {movieObj ? movieObj.original_title : ""}
           </div>
+          <div className="row">
           <div className="movie-info px-3">
+            <div>
             <img
-              className="movie-backdrop"
+              className="w-100 rounded"              
               src={`https://image.tmdb.org/t/p/original${movieObj.backdrop_path}`}
               alt=""
             />
-            <div className="movie-overview">
-              <div>
-                <h3 className="font-weight-bold">Movie Overview:</h3>
+           
+            <div className="movie-overview mt-2 w-100 ms-auto">
+              <div className="pt-3 m-3">
+                <h3 className="font-weight-bold text-decoration-underline">Movie Overview:</h3>
                 {movieObj ? movieObj.overview : ""}
-                <span>
-                  <hr />
-                </span>
-                Release date:<p>{movieObj.release_date}</p>
-                <div key={userRating}>
+                <hr></hr>
+                Release date:<p>{releaseDate}</p>
+                <hr></hr>
+                <div>
                 Horror Scorer Rating <br></br>({ratingsArray.length} ratings):
-                <StarsReview rating={compositeRating} size={32} />
+                <StarsReview key={userRating} rating={compositeRating} size={32} />
                 </div>
                 <hr></hr>
-               {!isRated &&
+               {!userRating && authState?.isAuthenticated &&
                   <div className="dropdown" style={{ cursor: "pointer" }}>
                     <h5
                       className="dropdown-toggle"
                       id="dropdownMenuButton1"
                       data-bs-toggle="dropdown"
                     >
-                      Leave a review ?
+                      Rate this movie ?
                     </h5>
                     <ul
                       id="submitReviewRating"
@@ -295,7 +305,7 @@ export const SingleMovie: React.FC<{ movieArr: unknown }> = (props) => {
                                          
                   </div>
                  }
-                 {isRated &&
+                 {userRating &&
                   <div>
                         Your Rating:
                         <StarsReview rating={userRating} size={32} />
@@ -307,11 +317,13 @@ export const SingleMovie: React.FC<{ movieArr: unknown }> = (props) => {
                
               </div>
             </div>
+            </div>
           </div>
-        </div>
+          </div>
+        
 
         {authState?.isAuthenticated && (
-          <div className="ms-4">
+          <div className="m-2 ms-lg-5">
             <ReviewForm
               movieObj={movieObj}
               isReviewed={isReviewed}
@@ -321,6 +333,7 @@ export const SingleMovie: React.FC<{ movieArr: unknown }> = (props) => {
         )}
 
         <MovieReviews movieObj={movieObj} isReviewed={isReviewed} />
+      </div>
       </div>
     </>
   );

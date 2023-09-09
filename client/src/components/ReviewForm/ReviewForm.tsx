@@ -2,7 +2,6 @@ import { useState } from 'react';
 import MovieModel from "../../models/MovieModel";
 import UserModel from "../../models/UserModel";
 import ReviewModel from "../../models/ReviewModel";
-import "./reviewform.css";
 import { useOktaAuth } from '@okta/okta-react';
 
 export const ReviewForm: React.FC<{ isReviewed: unknown, setIsReviewed: unknown }> = (props) => {
@@ -123,7 +122,7 @@ const addMovie = async (data) => {
         Character Count: {characterCount}/280
         {error && <span className="ml-2">Something went wrong...</span>}
         </p>
-        <form className="flex-row justify-center justify-space-between-md align-stretch"
+        <form className="flex-row justify-center justify-space-between-md align-stretch d-lg-flex"
         onSubmit={handleFormSubmit}>
             <textarea
             placeholder="Leave a Comment..."
@@ -132,7 +131,7 @@ const addMovie = async (data) => {
             onChange={handleChange}
             ></textarea>
             <div className='my-1 mx-2'>
-            <button className="btn col-1 btn-dark" type="submit">
+            <button className="btn col-1 btn-dark w-100" type="submit">
             Submit
             </button>
             </div>

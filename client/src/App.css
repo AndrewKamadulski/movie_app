@@ -49,17 +49,16 @@ body {
   margin-bottom: 1em;
 }
 
-.movie-backdrop {
-  width: 65dvw;
-  object-fit: cover;
-}
+
+
+
 
 .page-link {
   color: black;
 }
 
 .card-header {
-  background-color: black;
+  background-color: rgb(170, 20, 20);
   border-radius: 6px !important;
 }
 
