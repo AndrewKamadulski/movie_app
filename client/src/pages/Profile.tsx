@@ -153,11 +153,11 @@ export const Profile = () => {
             </div>
           )}
         </div>
-        <div className="col-12 col-lg-3 w-25">
-          <div className="bg-red rounded mt-5">
+        <div className="col-12 col-lg-3 w-25 ">
+          <div className="bg-red rounded mt-5 border border-white ">
             <h4>{isSameUser ? "Your" : userName + "'s"} friends</h4>
           </div>
-          <div className="bg-light rounded">
+          <div className="bg-light rounded border border-dark ">
             {profileUser &&
               profileUser._embedded &&
               !profileUser._embedded.friends && (

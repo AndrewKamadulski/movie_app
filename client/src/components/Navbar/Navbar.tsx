@@ -6,14 +6,11 @@ export const Navbar = () => {
   const { oktaAuth, authState } = useOktaAuth();
 
   if (!authState) {
-    return(
-      <div>Loading......</div>
-    );
+    return <div>Loading......</div>;
   }
 
   const handleLogout = async () => oktaAuth.signOut();
   console.log(authState);
-  
 
   return (
     <nav className="navbar navbar-dark bg-red navbar-expand-lg">
@@ -37,33 +34,41 @@ export const Navbar = () => {
           id="navbarSupportedContent"
         >
           <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
-            {!authState.isAuthenticated ?
-            <>
-            <li className="nav-item">
-            <Link to="/Login" className="nav-link text-light">
-              Login
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link to="/" className="nav-link text-light">
-              SignUp
-            </Link>
-          </li> 
-          </> 
-          : 
-          <>
-          <li className="nav-item">
-            <Link to="/" className="nav-link text-light" onClick={handleLogout}>Logout</Link>
-          </li>
-                  <li className="nav-item">
-                  <Link to={`/profile/` + authState.idToken.claims.name } className="nav-link text-light">
+            {!authState.isAuthenticated ? (
+              <>
+                <li className="nav-item">
+                  <Link to="/Login" className="nav-link text-light">
+                    Login
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link to="/" className="nav-link text-light">
+                    SignUp
+                  </Link>
+                </li>
+              </>
+            ) : (
+              <>
+                <li className="nav-item">
+                  <Link
+                    to={`/profile/` + authState.idToken.claims.name}
+                    className="nav-link text-light"
+                  >
                     {authState.idToken.claims.name}
                   </Link>
                 </li>
-                </>
-          }
-           </ul>
-    
+                <li className="nav-item">
+                  <Link
+                    to="/"
+                    className="nav-link text-light"
+                    onClick={handleLogout}
+                  >
+                    Logout
+                  </Link>
+                </li>
+              </>
+            )}
+          </ul>
         </div>
       </div>
     </nav>
