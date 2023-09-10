@@ -77,6 +77,10 @@ body {
   min-height: 30vh;
 }
 
+.signup-form {
+  min-height:75vh;
+}
+
 .bg-red {
   background-color: rgb(170, 20, 20);
 }

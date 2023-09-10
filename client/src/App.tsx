@@ -16,6 +16,7 @@ import { Security, LoginCallback } from "@okta/okta-react";
 import LoginWidget from "./Auth/LoginWidget";
 import { SingleReview } from "./pages/SingleReview";
 import { Profile } from "./pages/Profile";
+import { SignUp } from "./pages/SignUp";
 
 const oktaAuth = new OktaAuth(oktaConfig);
 function App() {
@@ -64,12 +65,16 @@ function App() {
              />
 
             <Route
+            path="/signup"
+            element={<SignUp/>}
+            />
+
+            <Route
               path="/login"
               element={<LoginWidget config={oktaConfig}></LoginWidget>}
             />
             <Route path="/login/callback" component={LoginCallback} />
-          </Routes>
-          <Footer />      
+          </Routes>             <Footer />      
         </Security>
       </Router>
     </>
