@@ -67,7 +67,7 @@ export const ReviewForm: React.FC<{ isReviewed: unknown, setIsReviewed: unknown 
 
 
 
-const addMovie = async (data) => {
+const addMovie = async (movie: MovieModel) => {
 
   if (authState && authState.isAuthenticated) {
     const url = `http://localhost:8080/api/movies/secure/add/movie`;
@@ -77,7 +77,7 @@ const addMovie = async (data) => {
         Authorization: `Bearer ${authState.accessToken?.accessToken}`,
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify(movie),
     };
     const addMovieResponse = await fetch(url, requestOptions);
     if (!addMovieResponse.ok) {

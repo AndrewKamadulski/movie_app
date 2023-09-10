@@ -76,7 +76,7 @@ export const SingleMovie: React.FC<{ movieArr: unknown }> = (props) => {
     return rounded;
   };
   
-  const addMovie = async (data: MovieModel) => {
+  const addMovie = async (movie: MovieModel) => {
 
     if (authState && authState.isAuthenticated) {
       const url = `http://localhost:8080/api/movies/secure/add/movie`;
@@ -86,7 +86,7 @@ export const SingleMovie: React.FC<{ movieArr: unknown }> = (props) => {
           Authorization: `Bearer ${authState.accessToken?.accessToken}`,
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify(movie),
       };
       const addMovieResponse = await fetch(url, requestOptions);
       if (!addMovieResponse.ok) {
@@ -113,7 +113,7 @@ export const SingleMovie: React.FC<{ movieArr: unknown }> = (props) => {
   }
 
   if(response.ok) {
-    addRating(ratingRequestData).then(()=>console.log("and then")).then(()=>setUserRating(ratingRequestData.rating));   
+    addRating(ratingRequestData).then(()=>setUserRating(ratingRequestData.rating));   
   }
 }
 
@@ -146,13 +146,14 @@ const addRating = async (data: RatingModel) => {
   function handleStarValue(value: number) {    
     console.log(value);  
 
-    const { user_id, name, email } = authState?.idToken?.claims;
+    if(authState && authState.idToken){
+    const { user_id, name, email } = authState.idToken.claims;
     const user = new UserModel(parseInt(user_id), name, email);  
     const movie = new MovieModel(movieObj.id, movieObj.title);   
 
     const ratingRequestData = new RatingModel(value, user, movie);
     validateMovie(ratingRequestData);
-  
+    }
      
   }
 
