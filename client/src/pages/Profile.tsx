@@ -3,15 +3,20 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import UserModel from "../models/UserModel";
 import FriendModel from "../models/FriendModel";
+import ProfileType from "../Types/ProfileType";
+import Review from "../Types/Review";
 
 export const Profile = () => {
   const { userName } = useParams();
   const { authState } = useOktaAuth();
   const [friendAdded, setFriendAdded] = useState(false);
-  const [profileUser, setProfileUser] = useState();
+  const [profileUser, setProfileUser] = useState<ProfileType>();
 
   let isFriend;
-  let isSameUser = false;
+  let isSameUser: boolean = false;
+
+
+  console.log(profileUser);
 
   if (profileUser && profileUser._embedded && profileUser._embedded.friends) {
     isFriend = profileUser._embedded.friends.filter(
@@ -29,6 +34,7 @@ export const Profile = () => {
     ).then(function (response) {
       response.json().then(function (data) {
         try {
+          console.log(data._embedded.users[0])
           setProfileUser(data._embedded.users[0]);
         } catch {
           console.error;
@@ -58,12 +64,13 @@ export const Profile = () => {
   };
 
   const handleAddFriend = () => {
+    // eslint-disable-next-line no-unsafe-optional-chaining
     const { user_id, name, email } = authState?.idToken?.claims;
     const user = new UserModel(user_id, name, email);
     const friendId = new UserModel(
-      profileUser.id,
-      profileUser.userName,
-      profileUser.email
+      profileUser!.id,
+      profileUser!.userName,
+      profileUser!.email
     );
     const friendRequest = new FriendModel(user, friendId);
     addFriend(friendRequest);
@@ -106,7 +113,7 @@ export const Profile = () => {
               {profileUser._embedded &&
                 profileUser._embedded.reviews &&
                 profileUser._embedded.reviews.map(
-                  (review: any, index: number) => (
+                  (review: Review) => (
                     <div className="py-1" key={review.id}>
                       <Link
                         className="text-decoration-none text-light"
@@ -118,7 +125,7 @@ export const Profile = () => {
                               <div className=" row">
                                 <div
                                   className="col-12 col-md-5 ms-2 "
-                                  datatype={review.id}
+                                  datatype={(review.id).toString()}
                                 >
                                   <div>
                                     <Link

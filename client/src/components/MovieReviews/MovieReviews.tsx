@@ -1,23 +1,23 @@
 import { useOktaAuth } from "@okta/okta-react";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import Review from "../../Types/Review";
+import MovieObj from "../../Types/MovieObj";
 
 
-export const MovieReviews: React.FC<{ isReviewed: unknown }> = (props) => {
+export const MovieReviews: React.FC<{ movieObj: MovieObj, isReviewed: boolean}> = (props) => {
   const movie = useParams();
 
-  const { movieObj, isReviewed } = props;
-  const [reviewData, setReviewData] = useState([]);
+  const { isReviewed } = props;
+  const [reviewData, setReviewData] = useState<Review[]>([]);
   const { authState } = useOktaAuth();
 
 
   useEffect(() => {
     fetch(
-      `http://www.localhost:8080/api/reviews/search/findByMovieId?movieId=${parseInt(
-        movie.id
-      )}`
-    ).then(function (response) {
-      response.json().then(function (data) {
+      `http://www.localhost:8080/api/reviews/search/findByMovieId?movieId=${parseInt(movie.id!)}`)
+        .then(function (response) {
+        response.json().then(function (data) {
         try {
           setReviewData(data._embedded.reviews);
         } catch {
@@ -29,14 +29,14 @@ export const MovieReviews: React.FC<{ isReviewed: unknown }> = (props) => {
 
   if (reviewData.length === 0) {
     return (
-      <div className="ms-3" key={!isReviewed}>
+      <div className="ms-3" key={(!isReviewed).toString()}>
         <h3>No Comments Yet</h3>
       </div>
     );
   } else {
     return (
-      <div className="p-4" key={!isReviewed}>
-        {reviewData.map((review: any, index: number) => (
+      <div className="p-4"  key={(!isReviewed).toString()}>
+        {reviewData.map((review: Review) => (
           <div className="py-1" key={review.id}>
             <Link
               className="text-decoration-none text-light"
@@ -48,7 +48,7 @@ export const MovieReviews: React.FC<{ isReviewed: unknown }> = (props) => {
                     <div className=" row">
                       <div
                         className="col-12 col-md-5 ms-2 "
-                        datatype={review.id}
+                        datatype={(review.id).toString()}
                       >
                         <Link
                           className="text-decoration-none text-light"

@@ -1,27 +1,28 @@
-import { useState } from 'react';
+import {ChangeEventHandler, SyntheticEvent, useState } from 'react';
 import MovieModel from "../../models/MovieModel";
 import UserModel from "../../models/UserModel";
 import ReviewModel from "../../models/ReviewModel";
 import { useOktaAuth } from '@okta/okta-react';
+import MovieObj from '../../Types/MovieObj';
 
-export const ReviewForm: React.FC<{ isReviewed: unknown, setIsReviewed: unknown }> = (props) => {
+export const ReviewForm: React.FC<{ movieObj: MovieObj, isReviewed: boolean, setIsReviewed:React.Dispatch<React.SetStateAction<boolean>> }> = (props) => {
     const { movieObj, isReviewed, setIsReviewed} = props;
-
     const { authState } = useOktaAuth();
-
     const [Text, setText] = useState('');
     const [characterCount, setCharacterCount] = useState(0);
-    const [error, setError] = useState(false); 
+    // const [error, setError] = useState(false); 
+    const [error] = useState(false);
 
-    const handleChange = event => {
-        if (event.target.value.length <= 280) {
-          setText(event.target.value);
-          setCharacterCount(event.target.value.length);
+    const handleChange:ChangeEventHandler<HTMLTextAreaElement> =  e  => {
+      const text = e.target;
+        if (text.value.length <= 280) {
+          setText(text.value);
+          setCharacterCount(text.value.length);
         }
       };
 
       
-      const handleFormSubmit = async event => {   
+      const handleFormSubmit = async (event: SyntheticEvent) => {   
         event.preventDefault()              
         try {
 
@@ -90,7 +91,7 @@ const addMovie = async (movie: MovieModel) => {
   
 }
 
-      const addReview = async (data) => {
+      const addReview = async (data:ReviewModel) => {
 
         if (authState && authState.isAuthenticated) {
           const url = `http://localhost:8080/api/reviews/secure/add/review`;
@@ -122,8 +123,7 @@ const addMovie = async (movie: MovieModel) => {
         Character Count: {characterCount}/280
         {error && <span className="ml-2">Something went wrong...</span>}
         </p>
-        <form className="flex-row justify-center justify-space-between-md align-stretch d-lg-flex"
-        onSubmit={handleFormSubmit}>
+        <form className="flex-row justify-center justify-space-between-md align-stretch d-lg-flex" onSubmit={handleFormSubmit}>
             <textarea
             placeholder="Leave a Comment..."
             value={Text}

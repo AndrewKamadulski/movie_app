@@ -7,18 +7,35 @@ import { StarsReview } from "../components/StarReview/StarReview";
 import UserModel from "../models/UserModel";
 import MovieModel from "../models/MovieModel";
 import RatingModel from "../models/RatingModel";
+import MovieObj from "../Types/MovieObj";
+import Rating from "../Types/Rating";
 
-export const SingleMovie: React.FC<{ movieArr: unknown }> = (props) => {
+export const SingleMovie = () => {
   const { id } = useParams();
   const [isReviewed, setIsReviewed] = useState(false);
   const [isRated, setIsRated] = useState(false);
-  const [movieObj, setMovieObj] = useState({});
   const [compositeRating, setCompositeRating] = useState(0);
-  const [userRating, setUserRating] = useState();
-  const [ratingsArray, setRatingsArray] = useState([]);    
+  const [userRating, setUserRating] = useState(0);
+  const [ratingsArray, setRatingsArray] = useState<number[]>([]);    
   const { authState } = useOktaAuth();  
 
-  console.log(movieObj);
+
+ const [movieObj, setMovieObj] = useState<MovieObj>({ 
+  adult: false,
+  backdrop_path: "",
+  genre_ids: [0],
+  id: 0,
+  original_language: "",
+  original_title: "",
+  overview: "",
+  popularity: 0,
+  poster_path: "",
+  release_date: "",
+  title: "",
+  video: false,
+  vote_average: 0,
+  vote_count:0,
+});
 
 
 
@@ -48,10 +65,11 @@ export const SingleMovie: React.FC<{ movieArr: unknown }> = (props) => {
     fetch(url).then(function (response) {
       if(response.ok){
       response.json().then(function (data) {
-        const tempArray = [];
-        data._embedded.ratings.map((el) => tempArray.push(el.rating));
+        const tempArray: number[] = [];
+        data._embedded.ratings.map((el:RatingModel) => tempArray.push(el.rating));
         const sum = tempArray.reduce((accumulator, currentValue) => {
           return accumulator + currentValue;
+    
         }, 0);
         const average = sum / tempArray.length;
         setRatingsArray(tempArray);
@@ -59,11 +77,11 @@ export const SingleMovie: React.FC<{ movieArr: unknown }> = (props) => {
         setCompositeRating(roundedAvg);
 
         const ratingData = data._embedded.ratings.filter(
-          (rating) => rating.userId.userName === authState?.idToken?.claims.name
+          (rating: Rating) => rating.userId.userName === authState?.idToken?.claims.name
         );
         if(ratingData[0]) {
           setUserRating(ratingData[0].rating);        
-        };
+        }
       });
      }
     });
@@ -99,9 +117,8 @@ export const SingleMovie: React.FC<{ movieArr: unknown }> = (props) => {
     }
     
   }
-
   const validateMovie = async (ratingRequestData: RatingModel) => {
-    console.log(ratingRequestData)   
+    
     const response = await fetch(
     `http://www.localhost:8080/api/movies/${id}`
   )
@@ -143,9 +160,7 @@ const addRating = async (data: RatingModel) => {
 }
  
 
-  function handleStarValue(value: number) {    
-    console.log(value);  
-
+  function handleStarValue(value: number) {     
     if(authState && authState.idToken){
     const { user_id, name, email } = authState.idToken.claims;
     const user = new UserModel(parseInt(user_id), name, email);  

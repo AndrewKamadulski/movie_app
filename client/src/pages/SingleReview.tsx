@@ -2,13 +2,14 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { ReplyForm } from "../components/ReplyForm/ReplyForm";
 import { useOktaAuth } from "@okta/okta-react";
+import Review from "../Types/Review";
 
 export const SingleReview = () => {
   const reviewParam = useParams(); 
   const { authState } = useOktaAuth();
 
 
-  const [singleMovieReviewData, setSingleMovieReviewData] = useState();
+  const [singleMovieReviewData, setSingleMovieReviewData] = useState<Review[]>();
   const [isReplied, setIsReplied] = useState(false);
 
 
@@ -19,9 +20,9 @@ export const SingleReview = () => {
       response.json().then(function (data) {
         try {
              const singleReview = [...data._embedded.reviews].filter(
-            (el) => el.id === parseInt(reviewParam.id)
+            (el) => el.id === parseInt(reviewParam.id!)
           );
-
+            console.log(singleReview)
           setSingleMovieReviewData(singleReview);
         } catch {
           console.error;
@@ -32,7 +33,7 @@ export const SingleReview = () => {
 
   return (
     <>    
-    <div className="container pt-5" key={isReplied}>        
+    <div className="container pt-5" key={String(isReplied)}>        
       {singleMovieReviewData && (
         <div className="p-3 single-review-container">
           <div className="card single-review">
@@ -63,7 +64,7 @@ export const SingleReview = () => {
                       <Link className="text-decoration-none text-light" to={`/profile/`+ reply.userName}>{reply.userName}</Link>
                       {" replied"}
                     </div>
-                    <div className="ms-5 my-2" key={isReplied}>{reply.replyText}<hr></hr></div>
+                    <div className="ms-5 my-2" key={String(isReplied)}>{reply.replyText}<hr></hr></div>
                     
                   </div>
                 );

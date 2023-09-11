@@ -17,15 +17,16 @@ import LoginWidget from "./Auth/LoginWidget";
 import { SingleReview } from "./pages/SingleReview";
 import { Profile } from "./pages/Profile";
 import { SignUp } from "./pages/SignUp";
+import MovieObj from "./Types/MovieObj";
 
 const oktaAuth = new OktaAuth(oktaConfig);
 function App() {
-  const [movieArr, setMovieArr] = useState([]);
-
+  const [movieArr, setMovieArr] = useState<MovieObj[]>([]);
   const customAuthHandler = () => {
     redirect("/login");
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const restoreOriginalUri = async (_oktaAuth: any, originalUri: any) => {
     redirect(toRelativeUrl(originalUri || "/", window.location.origin));
   };
@@ -53,7 +54,7 @@ function App() {
 
             <Route
               path="/movie/:id"
-              element={<SingleMovie movieArr={movieArr}></SingleMovie>}
+              element={<SingleMovie></SingleMovie>}
             />
 
             <Route path="/review/:id"
@@ -73,7 +74,7 @@ function App() {
               path="/login"
               element={<LoginWidget config={oktaConfig}></LoginWidget>}
             />
-            <Route path="/login/callback" component={LoginCallback} />
+            <Route path="/login/callback" Component={LoginCallback} />
           </Routes>             <Footer />      
         </Security>
       </Router>

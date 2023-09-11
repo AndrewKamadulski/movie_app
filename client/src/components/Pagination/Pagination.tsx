@@ -1,12 +1,14 @@
+import { ChangeEventHandler} from "react";
+
 export const Pagination: React.FC<{
   pageNumber: number;
   setPageNumber: React.Dispatch<React.SetStateAction<number>>;
 }> = (props) => {
   const { pageNumber, setPageNumber } = props;
 
-  const handlePageChange = (event) => {
-    if (event.target.value >= 1 && event.target.value <= 500) {
-      setPageNumber(parseInt(event.target.value));
+  const handlePageChange:ChangeEventHandler<HTMLInputElement> = e => {
+    if (parseInt(e.target.value) >= 1 && parseInt(e.target.value) <= 500) {
+      setPageNumber(parseInt(e.target.value));
     }
   };
 
@@ -41,7 +43,7 @@ export const Pagination: React.FC<{
               type="text"
               value={pageNumber}
               maxLength={3}
-              onChange={(event) => handlePageChange(event)}
+              onChange={handlePageChange}
               style={{ width: 40, height: 30 }}
             ></input>
           </button>

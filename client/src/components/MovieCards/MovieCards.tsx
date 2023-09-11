@@ -1,11 +1,12 @@
-import { setState, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import "./card.css";
-import { Link } from "react-router-dom";
+import { Link } from "react-router-dom"
 import { Pagination } from "../Pagination/Pagination";
+import MovieObj from "../../Types/MovieObj";
 
-export const MovieCards: React.FC<{
-  movieArr: unknown;
-  setMovieArr: React.Dispatch<React.SetStateAction<unknown>>; 
+
+export const MovieCards: React.FC<{  movieArr: MovieObj[], 
+  setMovieArr: React.Dispatch<React.SetStateAction<MovieObj[]>>
 }> = (props) => {
   const {  movieArr, setMovieArr } = props;
 
@@ -19,7 +20,7 @@ export const MovieCards: React.FC<{
         setMovieArr(data.results);
       });
     });
-  }, [pageNumber]);
+  }, [pageNumber, setMovieArr]);
 
   return (
     <>
@@ -28,7 +29,7 @@ export const MovieCards: React.FC<{
           <div className="col-lg-12">
             <div className="mt-3">
               <div className="row">
-                {movieArr.map((movie) => (
+                {movieArr.map((movie: MovieObj) => (
                   <div
                     key={movie.id.toString()}
                     className="col-md-6 col-lg-4 col-xl-3 d-flex"
@@ -37,7 +38,7 @@ export const MovieCards: React.FC<{
                       <div className="col-3">
                         <Link to={`/movie/` + movie.id}>
                           <img
-                            id={movie.id}
+                            id={(movie.id).toString()}
                             className="card-image"
                             src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
                           />
