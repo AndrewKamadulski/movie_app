@@ -37,7 +37,7 @@ public class MyDataRestConfig implements RepositoryRestConfigurer {
                 .allowedOrigins(theAllowedOrigins);
     }
 
-    private void disableHttpMethods(Class theClass,
+    private void disableHttpMethods(Class<?> theClass,
                                     RepositoryRestConfiguration config,
                                     HttpMethod[] theUnsupportedActions) {
         config.getExposureConfiguration()

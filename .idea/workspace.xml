@@ -6,7 +6,20 @@
   <component name="ChangeListManager">
     <list default="true" id="d8d3066b-7957-410f-bce6-2738e74686e7" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/andrewkamadulski/movie_app/requestmodels/SignUpRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/andrewkamadulski/movie_app/requestmodels/SignUpRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/MovieCards/MovieCards.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/MovieCards/MovieCards.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/MovieReviews/MovieReviews.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/MovieReviews/MovieReviews.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/ReplyForm/ReplyForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/ReplyForm/ReplyForm.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/Profile.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/Profile.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/SingleMovie.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/SingleMovie.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/SingleReview.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/SingleReview.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/tsconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/andrewkamadulski/movie_app/config/MyDataRestConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/andrewkamadulski/movie_app/config/MyDataRestConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/andrewkamadulski/movie_app/config/SecurityConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/andrewkamadulski/movie_app/config/SecurityConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/test/java/com/andrewkamadulski/movie_app/MovieAppApplicationTests.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,6 +35,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="feature" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -43,10 +61,10 @@
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "ToolWindowRun.ShowToolbar": "false",
-    "git-widget-placeholder": "signup",
+    "git-widget-placeholder": "feature",
     "ignore.virus.scanning.warn.message": "true",
     "last_opened_file_path": "C:/Users/kamad/JAR/sendgrid-java.jar",
-    "project.structure.last.edited": "Problems",
+    "project.structure.last.edited": "Artifacts",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices"
